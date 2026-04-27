@@ -279,3 +279,111 @@ BEGIN
     END IF;
 END$$
 
+-- valida la nomina antes de insertarla
+CREATE TRIGGER IF NOT EXISTS antes_insertar_nomina
+BEFORE INSERT ON nomina
+FOR EACH ROW
+BEGIN
+    DECLARE existe INT DEFAULT 0;
+
+    IF NEW.salario_base < 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'El salario base no puede ser negativo';
+    END IF;
+
+    -- comprueba que no haya otra nomina del mismo empleado ese mes
+    SELECT COUNT(*) INTO existe
+    FROM nomina
+    WHERE id_personal = NEW.id_personal
+      AND YEAR(fecha)  = YEAR(NEW.fecha)
+      AND MONTH(fecha) = MONTH(NEW.fecha);
+
+    IF existe > 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Ya existe una nomina para este empleado en ese mes';
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+-- PROCEDIMIENTOS
+
+DELIMITER $$
+
+-- inserta una receta nueva comprobando que el nombre no exista ya
+CREATE PROCEDURE IF NOT EXISTS crear_receta_completa(
+    IN p_nombre      VARCHAR(150),
+    IN p_descripcion TEXT,
+    IN p_pasos       TEXT,
+    IN p_tiempo      INT,
+    IN p_tipo        ENUM('normal','vegetariana','vegana'),
+    IN p_id_usuario  INT
+)
+BEGIN
+    DECLARE existe INT DEFAULT 0;
+
+    SELECT COUNT(*) INTO existe FROM receta WHERE nombre = p_nombre;
+
+    IF existe > 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Ya existe una receta con ese nombre';
+    ELSE
+        INSERT INTO receta (nombre, descripcion, pasos, tiempo_preparacion, tipo, id_usuario)
+        VALUES (p_nombre, p_descripcion, p_pasos, p_tiempo, p_tipo, p_id_usuario);
+
+        SELECT LAST_INSERT_ID() AS id_receta_creada;
+    END IF;
+END$$
+
+-- devuelve las mejores recetas segun su puntuacion media
+CREATE PROCEDURE IF NOT EXISTS top_recetas(IN p_limite INT)
+BEGIN
+    IF p_limite < 1 THEN
+        SET p_limite = 10;
+    END IF;
+
+    SELECT * FROM vista_recetas_valoradas
+    ORDER BY media_puntuacion DESC
+    LIMIT p_limite;
+END$$
+
+-- genera la nomina de un empleado, las validaciones las hace el trigger
+CREATE PROCEDURE IF NOT EXISTS generar_nomina(
+    IN p_id_personal  INT,
+    IN p_fecha        DATE,
+    IN p_salario_base DECIMAL(10,2),
+    IN p_extras       DECIMAL(10,2)
+)
+BEGIN
+    INSERT INTO nomina (id_personal, fecha, salario_base, extras)
+    VALUES (p_id_personal, p_fecha, p_salario_base, p_extras);
+END$$
+
+-- muestra un informe de la receta usando las funciones de calorias
+CREATE PROCEDURE IF NOT EXISTS informe_receta(IN p_id_receta INT)
+BEGIN
+    DECLARE calorias  DECIMAL(10,2) DEFAULT 0;
+    DECLARE categoria VARCHAR(20)   DEFAULT '';
+
+    SET calorias  = fn_calorias_receta(p_id_receta);
+    SET categoria = fn_categoria_calorica(calorias);
+
+    SELECT
+        r.id_receta,
+        r.nombre,
+        r.tipo,
+        r.tiempo_preparacion,
+        u.nombre AS autor,
+        calorias AS calorias_totales,
+        categoria AS categoria_calorica,
+        ROUND(AVG(v.puntuacion), 2) AS media_puntuacion,
+        COUNT(v.id_valoracion)      AS total_votos
+    FROM receta r
+    LEFT JOIN usuario    u ON r.id_usuario = u.id_usuario
+    LEFT JOIN valoracion v ON r.id_receta  = v.id_receta
+    WHERE r.id_receta = p_id_receta
+    GROUP BY r.id_receta, r.nombre, r.tipo, r.tiempo_preparacion, u.nombre;
+END$$
+
+DELIMITER ;
