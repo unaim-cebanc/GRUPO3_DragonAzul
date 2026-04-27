@@ -1,0 +1,37 @@
+/*Ignorar CSS, pues luego se cambiará a la version final*/
+.main_section {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+nav {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+nav button {
+    border:  1px solid black;
+    border-radius: 8px;
+    margin-right: 50px;
+}
+
+header {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+section p {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
