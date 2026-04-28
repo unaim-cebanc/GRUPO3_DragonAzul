@@ -12,6 +12,7 @@ def home():
 
 @app.route("/inicio_sesion", methods = ['GET', 'POST'])
 def inicio_sesion():
+    error = False
     if request.method == 'POST':
         usuario = request.form.get("usuario")
         psw = request.form.get("contrasenia")
@@ -19,7 +20,14 @@ def inicio_sesion():
         if sql_scripts.validate_user(usuario, psw):
             session["usuario"] = usuario
             return redirect(url_for("home")) # redirección placeholder
+        else:
+            error = True
+            return render_template("inicio_sesion.html", error = error)
     return render_template("inicio_sesion.html")
+
+@app.route("/sobre_nosotros")
+def sobre_nosotros():
+    return render_template("Sobre_nosotros.html")
 
 def main():
     app.run(debug=True)

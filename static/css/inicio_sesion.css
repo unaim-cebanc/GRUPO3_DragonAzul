@@ -1,0 +1,56 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% del alto de la ventana */
+}
+
+form {
+    border-radius: 8px;
+    padding: 20px 30px;
+    text-align: center;
+    width: 375px;
+    height: 325px;
+    perspective: 1000px;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.input-wrapper {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 14px 12px;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+    background-color: rgb(240, 240, 240);
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: lightgrey;
+    outline: none;
+}

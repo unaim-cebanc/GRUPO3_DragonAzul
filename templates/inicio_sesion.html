@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_sesion.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
 </head>
 <body>
     <header>
@@ -13,15 +14,24 @@
     <nav>*barra navegacion*</nav>
     <main>
         <section>
-            <div>
                 <form action="/inicio_sesion" method="post">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" name="usuario" id="usuario">
-                    <label for="contrasenia">Contraseña:</label>
-                    <input type="password" name="contrasenia" id="contrasenia">
-                    <input type="submit" value="Iniciar Sesión">
+                    <div class="form_wrap">
+                        <h1>Iniciar Sesión</h1>
+                        <p>Accede a tu cuenta de GastroLab</p>
+                        <div class="input-wrapper">
+                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de Usuario">
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña">
+                        </div>
+                        <div>
+                            <input type="submit" value="Iniciar Sesión">
+                        </div>
+                        {% if error %}
+                            <p>Introduce credenciales correctas</p>
+                        {% endif %}
+                    </div>
                 </form>
-            </div>
         </section>
     </main>
 </body>
