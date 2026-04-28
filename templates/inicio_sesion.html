@@ -9,26 +9,32 @@
 </head>
 <body>
     <header>
-        *header*
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>nump</p>
     </header>
-    <nav>*barra navegacion*</nav>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+        </div>
+    </nav>
     <main>
         <section>
                 <form action="/inicio_sesion" method="post">
                     <div class="form_wrap">
                         <h1>Iniciar Sesión</h1>
-                        <p>Accede a tu cuenta de GastroLab</p>
+                        <p>Accede a tu cuenta de <b>GastroLab</b></p>
                         <div class="input-wrapper">
                             <input type="text" name="usuario" id="usuario" placeholder="Nombre de Usuario">
                         </div>
                         <div class="input-wrapper">
                             <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña">
                         </div>
-                        <div>
-                            <input type="submit" value="Iniciar Sesión">
+                        <div class="submit-wrapper">
+                            <input type="submit" value="Iniciar Sesión   &#129034;">
                         </div>
                         {% if error %}
-                            <p>Introduce credenciales correctas</p>
+                            <p class="error_msg">Introduce credenciales correctas</p>
                         {% endif %}
                     </div>
                 </form>

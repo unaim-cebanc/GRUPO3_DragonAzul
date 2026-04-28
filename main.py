@@ -12,6 +12,7 @@ def home():
 
 @app.route("/inicio_sesion", methods = ['GET', 'POST'])
 def inicio_sesion():
+    session.permanent = False
     error = False
     if request.method == 'POST':
         usuario = request.form.get("usuario")

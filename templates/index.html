@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">   
 </head>
 <body>
     <header>
-        <p>*header*</p>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>nump</p>
     </header>
     <nav>
-        <p>barra de navegación aqui</p>
-        <button><a href="/inicio_sesion">Iniciar Sesión</a></button>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+        </div>
+        <div class="nav_sesion">
+            <a href="/inicio_sesion">INICIAR SESION</a>
+        </div>
     </nav>
     <main>
         <h1>PAGINA PRINCIPAL</h1>
@@ -20,12 +27,14 @@
             <img src="" alt="insertar imagen">
             <p>isnertar texto</p>
         </section>
-        <section>
+        <section class="main_section">
             <p>insertar texto</p>
-            {% if session["usuario"] %}
-                <p>Bienvenido, {{session["usuario"]}}!</p>
-            {% endif %}
         </section>
+        {% if session["usuario"] %}
+            <section>
+                <p>Bienvenido, {{session["usuario"]}}!</p>
+            </section>    
+        {% endif %}
     </main>
     <footer>
         <p>FOOTER: AÑADIR REDES CONTACTOS ETC.</p>
