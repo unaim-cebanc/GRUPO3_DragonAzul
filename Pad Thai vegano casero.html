@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pad Thai Vegano Casero</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+h1 {
+  color: #00d300b0;
+}
+
+h2 {
+  color: #2c3e50;
+}
+
+ul, ol {
+  margin-bottom: 20px;
+}
+
+.rating {
+  color: #f1c40f;
+  font-size: 20px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
+img {
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+img:hover {
+  transform: scale(1.03);
+}
+
+/* Desplegable */
+#info {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+#info.open {
+  max-height: 2000px;
+  padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="500" onclick="toggleInfo()">
+
+<div id="info">
+  <div class="container">
+    <h1>Pad Thai Vegano Casero</h1>
+
+    <h2>Raciones</h2>
+    <p>3 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★ (3/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>25-35 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+      <li>150 g de fideos de arroz</li>
+      <li>1 zanahoria rallada</li>
+      <li>1 pimiento rojo en tiras</li>
+      <li>100 g de tofu firme</li>
+      <li>Salsa de soja</li>
+      <li>Pasta de tamarindo</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <li>Cocina los fideos de arroz según las instrucciones del paquete y resérvalos.</li> 
+    <li>En una sartén grande o wok, calienta el aceite y saltea el ajo durante 1 minuto.</li> 
+    <li>Añade el tofu y dóralo ligeramente.</li> 
+    <li>Incorpora la zanahoria y el pimiento, y cocina durante 3-4 minutos.</li> 
+    <li>Agrega los fideos cocidos.</li> <li>Mezcla la salsa de soja, el tamarindo y el sirope, y vierte sobre los fideos.</li> 
+    <li>Remueve bien para que todo se impregne del sabor.</li> 
+    <li>Añade los brotes de soja y cocina 2 minutos más.</li> 
+    <li>Sirve caliente con cacahuetes, cilantro y un chorrito de lima.</li> 
+  </ol>
+  </div>
+</div>
+
+<script>
+function toggleInfo() {
+  const info = document.getElementById("info");
+  info.classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
