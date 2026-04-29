@@ -1,0 +1,40 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+.about-section {
+    max-width: 90%;
+    width: 90%;
+    padding: 4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+}
+
+.about-section h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+}
+
+.about-section h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3rem;    /* era "rem" sin número, estaba roto */
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+}
+
+.about-section p {
+    font-size: 0.95rem;   /* era 1.9rem, demasiado grande */
+    line-height: 1.9;
+    color: var(--muted);
+}
