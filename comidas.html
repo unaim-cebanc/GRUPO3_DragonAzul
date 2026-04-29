@@ -1,0 +1,224 @@
+<!-- ========== INTERIOR RECETA ========== -->
+<section id="receta-detalle">
+
+  <!-- TÍTULO -->
+  <h1 class="receta-titulo">Blanqueta de Albóndigas</h1>
+
+  <!-- IMAGEN -->
+  <div class="receta-imagen">
+    <img src="imagen-receta.jpg" alt="Nombre de la receta">
+  </div>
+
+  <!-- MACROS -->
+  <div class="receta-macros">
+    <div class="macro">
+      <span class="macro-valor">000</span>
+      <span class="macro-label">kcal</span>
+    </div>
+    <div class="macro">
+      <span class="macro-valor">00g</span>
+      <span class="macro-label">Proteína</span>
+    </div>
+    <div class="macro">
+      <span class="macro-valor">00g</span>
+      <span class="macro-label">Carbohidratos</span>
+    </div>
+    <div class="macro">
+      <span class="macro-valor">00g</span>
+      <span class="macro-label">Grasas</span>
+    </div>
+  </div>
+
+  <!-- INGREDIENTES -->
+  <div class="receta-ingredientes">
+    <h2>Ingredientes</h2>
+    <ul>
+      <li><span class="ing-nombre">500 g de carne picada (ternera o mixta)</span><span class="ing-cantidad"></span></li>
+      <li><span class="ing-nombre">1 huevo</span><span class="ing-cantidad"></span></li>
+      <li><span class="ing-nombre">2 dientes de ajo</span><span class="ing-cantidad"></span></li>
+      <li><span class="ing-nombre">1 cebolla</span><span class="ing-cantidad"></span></li>
+      <li><span class="ing-nombre">2 zanahorias</span><span class="ing-cantidad"></span></li>
+       <li><span class="ing-nombre">150 g de champiñones</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">200 ml de nata para cocinar</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">500 ml de caldo de carne</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">Harina (para espesar)</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">Aceite de oliva</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">Sal y pimienta</span><span class="ing-cantidad"></span></li>
+        <li><span class="ing-nombre">Perejil fresco</span><span class="ing-cantidad"></span></li>
+    </ul>
+  </div>
+
+  <!-- PREPARACIÓN -->
+  <div class="receta-pasos">
+    <h2>Preparación</h2>
+    <ol>
+      <li>Forma las albóndigas con la carne, huevo, ajo, sal y pimienta.</li>
+      <li>Dóralas ligeramente en una sartén y resérvalas.</li>
+      <li>En la misma olla, sofríe cebolla, zanahoria y champiñones.</li>
+      <li>Añade una cucharada de harina y remueve.</li>
+      <li>Incorpora el caldo y cocina la salsa 10 minutos.</li>
+        <li>Añade las albóndigas y cocina a fuego medio 20-25 minutos.</li>
+        <li>Agrega la nata al final y mezcla suavemente.</li>
+        <li>Decora con perejil y sirve caliente.</li>
+    </ol>
+  </div>
+
+  <!-- VALORACIÓN -->
+  <div class="receta-valoracion">
+    <h2>Valoración</h2>
+    <div class="estrellas" id="estrellas">
+      <span class="estrella" data-val="1">★</span>
+      <span class="estrella" data-val="2">★</span>
+      <span class="estrella" data-val="3">★</span>
+      <span class="estrella" data-val="4">★</span>
+      <span class="estrella" data-val="5">★</span>
+    </div>
+    <button class="btn-valorar" id="btn-valorar">Enviar valoración</button>
+  </div>
+
+</section>
+
+<!-- ========== ESTILOS ========== -->
+<style>
+  #receta-detalle {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .receta-titulo {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .receta-imagen img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  /* MACROS */
+  .receta-macros {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .macro {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+
+  .macro-valor {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .macro-label {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* INGREDIENTES */
+  .receta-ingredientes,
+  .receta-pasos {
+    margin-bottom: 2rem;
+  }
+
+  .receta-ingredientes h2,
+  .receta-pasos h2,
+  .receta-valoracion h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .receta-ingredientes ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .receta-ingredientes li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+  }
+
+  .receta-ingredientes li:last-child {
+    border-bottom: none;
+  }
+
+  /* PASOS */
+  .receta-pasos ol {
+    padding-left: 1.2rem;
+  }
+
+  .receta-pasos li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* VALORACIÓN */
+  .estrellas {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    color: #ccc;
+  }
+
+  .estrella:hover,
+  .estrella.activa {
+    color: #f5a623;
+  }
+
+  .btn-valorar {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+
+  .btn-valorar:hover {
+    background: #555;
+  }
+</style>
+
+<!-- ========== SCRIPT VALORACIÓN ========== -->
+<script>
+  const estrellas = document.querySelectorAll('.estrella');
+  let seleccionada = 0;
+
+  estrellas.forEach(e => {
+    e.addEventListener('mouseenter', () => {
+      estrellas.forEach(s => s.classList.toggle('activa', +s.dataset.val <= +e.dataset.val));
+    });
+    e.addEventListener('mouseleave', () => {
+      estrellas.forEach(s => s.classList.toggle('activa', +s.dataset.val <= seleccionada));
+    });
+    e.addEventListener('click', () => {
+      seleccionada = +e.dataset.val;
+    });
+  });
+
+  document.getElementById('btn-valorar').addEventListener('click', () => {
+    if (!seleccionada) return alert('Elige una puntuación primero');
+    alert(`Valoración enviada: ${seleccionada} estrella${seleccionada > 1 ? 's' : ''}`);
+  });
+</script>
+<!-- ========== FIN INTERIOR RECETA ========== -->
