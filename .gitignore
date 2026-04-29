@@ -9,3 +9,6 @@ __pycache__/
 
 # Project config
 uv.lock
+
+# .txt personal
+cosas_a_añadir.txt

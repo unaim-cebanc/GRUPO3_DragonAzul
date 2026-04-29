@@ -55,15 +55,22 @@ def is_admin(user):
         return False
     return True
 
+def fetch_recepies_info():
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+    SELECT r.nombre, r.imagen, r.tipo, u.nombre
+    FROM receta r INNER JOIN usuario u ON r.id_usuario = u.id_usuario
+    """
+    CURSOR.execute(query)
+    result = CURSOR.fetchall()
+    close_conn(CONEXION, CURSOR)
+    
+    if result is None:
+        return
+    return result
+
 if __name__ == "__main__":
-    
-    usuario = input("Introduce tu nombre de usuario: ").strip().lower()
-    contraseña = input("Introduce tu contraseña: ").strip()
-    
-    if validate_user(usuario, contraseña):
-        if is_admin(usuario):
-            print("Sesion iniciada como admin")
-        else:
-            print("Sesion iniciada como invitado")
-    else:
-        print("Credenciales incorrectas")
+    recetas = fetch_recepies_info()
+    print(recetas)

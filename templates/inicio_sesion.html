@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar Sesion</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_sesion.css') }}">   
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
 </head>
 <body>
     <header>
         <img src="/static/images/logo.png" alt="logo.png">
-        <p>nump</p>
+        <p>mump</p>
     </header>
     <nav>
         <div class="nav_links">
@@ -25,10 +25,10 @@
                         <h1>Iniciar Sesión</h1>
                         <p>Accede a tu cuenta de <b>GastroLab</b></p>
                         <div class="input-wrapper">
-                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de Usuario">
+                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de Usuario" required>
                         </div>
                         <div class="input-wrapper">
-                            <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña">
+                            <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" required>
                         </div>
                         <div class="submit-wrapper">
                             <input type="submit" value="Iniciar Sesión   &#129034;">
