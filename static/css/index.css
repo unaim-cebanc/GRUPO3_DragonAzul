@@ -30,6 +30,8 @@ main h1::after {
     border-radius: 8px;
 }
 
+
+
 .main_section img {
     width: 100%;
     aspect-ratio: 4/3;
@@ -40,14 +42,25 @@ main h1::after {
 }
 
 .main_section p {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     color: var(--muted);
 }
 
+.main_section2 {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    
+}
 /* ── SECCIÓN BIENVENIDA ── */
 main > section:not(.main_section) {
-    padding: 1.8rem 2rem;
+    padding: 1.5rem 2rem;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -67,4 +80,46 @@ main > section:not(.main_section) p:last-child {
     font-style: italic;
     color: var(--gold);
     margin-top: 0.5rem;
+}
+
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color .2s;
+}
+
+.footer-links a:hover {
+    color: var(--blue);
+}
+
+.footer-copy {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }

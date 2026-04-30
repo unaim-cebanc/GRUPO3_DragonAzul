@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="/static/images/logo.png" alt="logo.png">
-        <p>nump</p>
+        <p>mump.26</p>
     </header>
     <nav>
         <div class="nav_links">
@@ -18,17 +18,17 @@
             <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
         </div>
         <div class="nav_sesion">
-            <a href="/inicio_sesion">INICIAR SESION</a>
+            <a href="/inicio_sesion">INICIAR SESIÓN</a>
         </div>
     </nav>
     <main>
-        <h1>PAGINA PRINCIPAL</h1>
+        <h1>PÁGINA PRINCIPAL</h1>
         <section class="main_section">
-            <img src="" alt="insertar imagen">
-            <p>isnertar texto</p>
+            <img src="/static/images/foto2342.png" alt="foto2342.png">
+            <p>GastroLab es la plataforma digital del centro. Aquí encontrarás recetas, menús semanales y contenido exclusivo, todo en un solo lugar.</p>
         </section>
-        <section class="main_section">
-            <p>insertar texto</p>
+        <section class="main_section2">
+            <p>La gastronomía también se digitaliza. En GastroLab encontrarás recetas, menús y contenido exclusivo del centro, todo organizado en un solo sitio. Porque perder una receta entre papeles ya es historia.</p>
         </section>
         {% if session["usuario"] %}
             <section>
@@ -36,8 +36,16 @@
             </section>    
         {% endif %}
     </main>
-    <footer>
-        <p>FOOTER: AÑADIR REDES CONTACTOS ETC.</p>
-    </footer>
+<footer>
+<div class="footer-content">
+    <p class="footer-title">Contacto</p>
+    <div class="footer-links">
+        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+        <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+    </div>
+    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+</div>
+</footer>
 </body>
 </html>
