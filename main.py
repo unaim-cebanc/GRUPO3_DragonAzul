@@ -30,6 +30,11 @@ def inicio_sesion():
 def sobre_nosotros():
     return render_template("Sobre_nosotros.html")
 
+@app.route("/recetario")
+def recetario():
+    recetas = sql_scripts.fetch_recepies_info()
+    return render_template("recetario.html", recetas = recetas)
+
 def main():
     app.run(debug=True)
 
