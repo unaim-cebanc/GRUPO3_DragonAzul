@@ -71,6 +71,20 @@ def fetch_recepies_info():
         return
     return result
 
+def insert_recepie(nombre, img, desc, pasos, tiempo_prep, tipo, user_id):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    query = """
+    INSERT INTO receta (nombre, imagen, descripcion, pasos, tiempo_preparacion, tipo, id_usuario) VALUES
+    (%s, %s, %s, %s, %s, %s, %s)
+    """
+    values = (nombre, img, desc, pasos, tiempo_prep, tipo, user_id)
+    
+    CURSOR.execute(query, values)
+    CONEXION.commit()
+    close_conn(CURSOR, CONEXION)
+    print("datos insertados!")
+
+
 if __name__ == "__main__":
-    recetas = fetch_recepies_info()
-    print(recetas)
+    insert_recepie("prueba", "none", "Esto es una receta de prueba", "1. Paso1""2. Paso2""3.Paso3", 60, "normal", 1)
