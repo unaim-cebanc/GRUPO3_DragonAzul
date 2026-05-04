@@ -55,6 +55,22 @@ def is_admin(user):
         return False
     return True
 
+def get_user_id(user):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = "SELECT id_usuario FROM usuario WHERE nombre = %s"
+    values = (user,)
+    
+    CURSOR.execute(query, values)
+    result = CURSOR.fetchone()
+    close_conn(CONEXION, CURSOR)
+    
+    if result is None:
+        print("Usuario no encontrado!")
+        return
+    return int(result[0])
+
 def fetch_recepies_info():
     CONEXION = try_conn()
     CURSOR = CONEXION.cursor()
@@ -71,20 +87,44 @@ def fetch_recepies_info():
         return
     return result
 
-def insert_recepie(nombre, img, desc, pasos, tiempo_prep, tipo, user_id):
+def insert_recepie(nombre, img, desc, ingredientes, cantidades, unidades, pasos, tiempo_prep, tipo, user_id):
     CONEXION = try_conn()
     CURSOR = CONEXION.cursor()
-    query = """
-    INSERT INTO receta (nombre, imagen, descripcion, pasos, tiempo_preparacion, tipo, id_usuario) VALUES
-    (%s, %s, %s, %s, %s, %s, %s)
-    """
-    values = (nombre, img, desc, pasos, tiempo_prep, tipo, user_id)
     
-    CURSOR.execute(query, values)
+    query_receta = """
+    INSERT INTO receta (nombre, imagen, descripcion, tiempo_preparacion, tipo, id_usuario) VALUES
+    (%s, %s, %s, %s, %s, %s)
+    """
+    values_receta = (nombre, img, desc, tiempo_prep, tipo, user_id)
+    
+    CURSOR.execute(query_receta, values_receta)
     CONEXION.commit()
+    
+    query_id = "SELECT id_receta FROM receta WHERE nombre = %s AND id_usuario = %s"
+    values_id = (nombre, user_id)
+    CURSOR.execute(query_id, values_id)
+    id_receta = CURSOR.fetchone()[0]
+    CURSOR.fetchall()
+    
+    query_ingredientes = """
+    INSERT INTO receta_ingrediente (id_receta, nombre, cantidad, unidad) VALUES (%s, %s, %s, %s)
+    """
+    values_ingredientes = [(id_receta, ing, qty, uni) for ing, qty, uni in zip(ingredientes, cantidades, unidades)]
+    
+    CURSOR.executemany(query_ingredientes, values_ingredientes)
+    CONEXION.commit()
+    
+    query_pasos = """
+    INSERT INTO pasos (id_receta, paso) VALUES (%s, %s)
+    """
+    values_pasos = [(id_receta, paso) for paso in pasos]
+    
+    CURSOR.executemany(query_pasos, values_pasos)
+    CONEXION.commit()
+    
     close_conn(CURSOR, CONEXION)
     print("datos insertados!")
 
 
 if __name__ == "__main__":
-    insert_recepie("prueba", "none", "Esto es una receta de prueba", "1. Paso1""2. Paso2""3.Paso3", 60, "normal", 1)
+    print(get_user_id("unai"))

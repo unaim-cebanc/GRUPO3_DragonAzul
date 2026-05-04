@@ -23,11 +23,18 @@
         </div>
     </nav>
     <main>
+        <div>
+            {% if session["usuario"] %}
+                <button onclick="window.location.href='/subir_receta'">Subir Receta +</button>
+            {% else %}
+                <button disabled>Subir Receta +</button>
+            {% endif %}
+        </div>
         <section class="main_section">
             {% if recetas %}
                 {% for r in recetas%}
                     <div class="card">
-                        <img src="{{r[1]}}" alt="Montaña al amanecer" />
+                        <img src="{{r[1]}}" alt="Montaña al amanecer"/>
                         <div class="card-body">
                             <h2>{{r[0]}}</h2>
                             {% if r[2] == 'normal' %}
