@@ -57,7 +57,6 @@ h1 {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-right: auto;
     text-align: left;
-    display: inline-block;
     float: left;
 }
 
@@ -65,7 +64,6 @@ img {
     cursor: pointer;
     border-radius: 10px;
     transition: transform 0.3s;
-    display: inline-block;
     float: left;
 }
 
@@ -94,9 +92,9 @@ img:hover {
 <h1>Recetario Interactivo</h1>
 
 <!-- PAD THAI -->
-<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="200" onclick="toggleInfo()">
+<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="200" onclick="toggleInfo(this)">
 
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Pad Thai Vegano Casero</h1>
 
@@ -134,9 +132,9 @@ img:hover {
 
 <!-- TOFU -->
 
-<img src="1366_2000.jpg" alt="Revuelto vegano de tofu" width="200" onclick="toggleInfo()">
+<img src="1366_2000.jpg" alt="Revuelto vegano de tofu" width="200" onclick="toggleInfo(this)">
 
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Revuelto Vegano de Tofu</h1>
     <h2>Descripción</h2>
@@ -178,9 +176,9 @@ img:hover {
 
 <!-- MERLUZA -->
 
-<img src="1366_2000.jpeg" alt="Merluza a la vasca" width="200" onclick="toggleInfo()">
+<img src="1366_2000.jpeg" alt="Merluza a la vasca" width="200" onclick="toggleInfo(this)">
 
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Merluza a la Vasca</h1>
     <h2>Descripción</h2>
@@ -226,9 +224,9 @@ img:hover {
 <!-- BLANQUETA -->
 
 <img src="2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg"
-    alt="Blanqueta de albóndigas" width="200" onclick="toggleInfo()">
+    alt="Blanqueta de albóndigas" width="200" onclick="toggleInfo(this)">
     
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Blanqueta de Albóndigas</h1>
     <h2>Descripción</h2>
@@ -277,9 +275,9 @@ img:hover {
 <!-- CROQUETAS -->
 
 <img src="croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp"
-    alt="Croquetas de chipirones" width="200" onclick="toggleInfo()">
+    alt="Croquetas de chipirones" width="200" onclick="toggleInfo(this)">
 
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Croquetas de Chipirones</h1>
     <h2>Descripción</h2>
@@ -324,9 +322,9 @@ img:hover {
 
 <!-- RISOTTO -->
 
-<img src="risotto-de-verduras.jpg" alt="Risotto de verduras" width="200" onclick="toggleInfo()">
+<img src="risotto-de-verduras.jpg" alt="Risotto de verduras" width="200" onclick="toggleInfo(this)">
 
-<div id="info">
+<div class="info">
     <div class="container">
     <h1>Risotto de Verduras</h1>
     <h2>Descripción</h2>
@@ -372,10 +370,15 @@ img:hover {
 </div>
 
 <script>
-function toggleInfo() {
-    const info = document.getElementById("info");
-    info.classList.toggle("open");
-}
+function toggleInfo(img) {
+    const info = img.nextElementSibling;
+
+    if (info.style.maxHeight) {
+        info.style.maxHeight = null;
+    } else {
+        info.style.maxHeight = info.scrollHeight + "px";
+    }
+} 
 </script>
 
 </body>
