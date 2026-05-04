@@ -4,3 +4,6 @@ Base de datos:
 - Después tuvimos varios intentos de hacerlo en MySQL Workbench, aquí hice varias cosas.
 - La base de datos definitiva la pude conseguir despues de hablar con Germán sobre la rúbrica que no estaba, con ello subido, ya pude hacer la base de datos definitiva.
 - Base de datos terminada.
+
+FLASK / HTML:
+- La parte de flask/html de sobre nosotros hecho, mas el css de cada apartado.
