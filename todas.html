@@ -13,7 +13,12 @@ body {
 }
 
 h1 {
-    margin-bottom: 30px;
+    color: #00d300b0;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
 }
 
 /* GRID tipo tabla */
@@ -31,11 +36,6 @@ h1 {
     background-color: #ddd;
 }
 
-img {
-    width: 100%;
-    cursor: pointer;
-}
-
 .info {
     max-height: 0;
     overflow: hidden;
@@ -49,6 +49,43 @@ img {
     max-height: 200px;
     padding: 10px;
 }
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-right: auto;
+    text-align: left;
+    display: inline-block;
+    float: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    display: inline-block;
+    float: left;
+}
+
+img:hover {
+    transform: scale(1.03);
+    display: inline-block;
+}
+
+/* Desplegable */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2000px;
+    padding-top: 20px;
+}
+
 </style>
 </head>
 
@@ -57,7 +94,7 @@ img {
 <h1>Recetario Interactivo</h1>
 
 <!-- PAD THAI -->
-<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="300" onclick="toggleInfo()">
+<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="200" onclick="toggleInfo()">
 
 <div id="info">
     <div class="container">
@@ -96,16 +133,12 @@ img {
 </div>
 
 <!-- TOFU -->
-<h1>Revuelto Vegano de Tofu</h1>
 
-<img src="1366_2000.jpg"
-    alt="Revuelto vegano de tofu"
-    width="300"
-    onclick="toggleInfo()">
+<img src="1366_2000.jpg" alt="Revuelto vegano de tofu" width="200" onclick="toggleInfo()">
 
 <div id="info">
     <div class="container">
-
+    <h1>Revuelto Vegano de Tofu</h1>
     <h2>Descripción</h2>
     <p>Un desayuno o cena saludable, rápido y proteico. El tofu sustituye al huevo con especias que le dan un sabor increíble.</p>
 
@@ -144,16 +177,12 @@ img {
 </div>
 
 <!-- MERLUZA -->
-<h1>Merluza a la Vasca</h1>
 
-<img src="1366_2000.jpeg"
-    alt="Merluza a la vasca"
-    width="300"
-    onclick="toggleInfo()">
+<img src="1366_2000.jpeg" alt="Merluza a la vasca" width="200" onclick="toggleInfo()">
 
 <div id="info">
     <div class="container">
-
+    <h1>Merluza a la Vasca</h1>
     <h2>Descripción</h2>
     <p>Un clásico de la cocina vasca: merluza suave en salsa verde con guisantes, espárragos y huevo cocido.</p>
 
@@ -195,16 +224,13 @@ img {
 </div>
 
 <!-- BLANQUETA -->
-<h1>Blanqueta de Albóndigas</h1>
 
 <img src="2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg"
-    alt="Blanqueta de albóndigas"
-    width="300"
-    onclick="toggleInfo()">
-
+    alt="Blanqueta de albóndigas" width="200" onclick="toggleInfo()">
+    
 <div id="info">
     <div class="container">
-
+    <h1>Blanqueta de Albóndigas</h1>
     <h2>Descripción</h2>
     <p>Un guiso tradicional cremoso con albóndigas en salsa blanca suave, cebolla, zanahoria y champiñones.</p>
 
@@ -249,16 +275,13 @@ img {
 </div>
 
 <!-- CROQUETAS -->
-<h1>Croquetas de Chipirones</h1>
 
 <img src="croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp"
-    alt="Croquetas de chipirones"
-    width="300"
-    onclick="toggleInfo()">
+    alt="Croquetas de chipirones" width="200" onclick="toggleInfo()">
 
 <div id="info">
     <div class="container">
-
+    <h1>Croquetas de Chipirones</h1>
     <h2>Descripción</h2>
     <p>Cremosas por dentro y crujientes por fuera, estas croquetas de chipirones tienen un sabor intenso a mar, típicas de la cocina española.</p>
 
@@ -300,16 +323,12 @@ img {
 </div>
 
 <!-- RISOTTO -->
-<h1>Risotto de Verduras</h1>
 
-<img src="risotto-de-verduras.jpg"
-    alt="Risotto de verduras"
-    width="300"
-    onclick="toggleInfo()">
+<img src="risotto-de-verduras.jpg" alt="Risotto de verduras" width="200" onclick="toggleInfo()">
 
 <div id="info">
     <div class="container">
-
+    <h1>Risotto de Verduras</h1>
     <h2>Descripción</h2>
     <p>Un plato italiano cremoso y reconfortante, elaborado con arroz y verduras frescas, ideal como comida principal.</p>
 
@@ -353,8 +372,9 @@ img {
 </div>
 
 <script>
-function toggle(id) {
-    document.getElementById(id).classList.toggle("open");
+function toggleInfo() {
+    const info = document.getElementById("info");
+    info.classList.toggle("open");
 }
 </script>
 
