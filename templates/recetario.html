@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recetario.css') }}">
+    <title>Recetario</title>
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>mump</p>
+    </header>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario">RECETARIO</a>
+        </div>
+        <div class="nav_sesion">
+            <a href="/inicio_sesion">INICIAR SESION</a>
+        </div>
+    </nav>
+    <main>
+        <section class="main_section">
+            {% if recetas %}
+                {% for r in recetas%}
+                    <div class="card">
+                        <img src="{{r[1]}}" alt="Montaña al amanecer" />
+                        <div class="card-body">
+                            <h2>{{r[0]}}</h2>
+                            {% if r[2] == 'normal' %}
+                                <p>Vegetariano: No</p>
+                                <p>Vegano: No</p>
+                            {% elif r[2] == 'vegetariana' %}
+                                <p>Vegetariano: Si</p>
+                                <p>Vegano: No</p>
+                            {% else %}
+                                <p>Vegetariano: Si</p>
+                                <p>Vegano: Si</p>
+                            {% endif %}
+                            <br>
+                            <p class="user_p">{{r[3]}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="case_empty">
+                    <h1>TODAVÍA NO SE HA SUBIDO NINGUNA RECETA</h1>
+                    <h2>¡Se el primero en publicar una!</h2>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+<footer>
+<div class="footer-content">
+    <p class="footer-title">Contacto</p>
+    <div class="footer-links">
+        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+        <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+    </div>
+    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+</div>
+</footer>
+</body>
+</html>

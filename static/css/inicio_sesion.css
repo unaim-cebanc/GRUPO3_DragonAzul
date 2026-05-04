@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap");
+
+:root {
+    --bg: #060d1a;
+    --surface: #0e1c30;
+    --input_hover: #060d1ad6;
+    --input_border_hover: #607a99a6;
+    --border: rgba(58, 159, 255, 0.15);
+    --blue: #3a9fff;
+    --gold: #d4a843;
+    --text: #e8f0ff;
+    --text_hover: #cdd4e1;
+    --muted: #607a99;
+    --error_text: #de8181;
+}
+
+/* ── MAIN ── */
+main h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+main h1::after{
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0.7rem auto 0;
+}
+
+main p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+main b {
+    font-weight: 600;
+}
+
+main section {
+    padding: 1.8rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* ── FORMULARIO ── */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.form_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form .error_msg {
+    margin-top: 30px;
+    color: var(--error_text);
+}
+/* ── INPUTS (usuario y contraseña) ── */
+.input-wrapper {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    background-color: var(--surface);
+    font-size: 14px;
+    padding: 14px 12px;
+    width: 100%;
+    max-width: 320px;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: var(--bg);
+    border-color: var(--muted);
+    outline: none;
+}
+input[type="text"]:autofill {
+    background-color: var(--bg);
+    border-color: var(--muted);
+    color: var(--white);
+    outline: none;
+}
+
+/* ── INPUT (submit) ── */
+.submit-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="submit"] {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    border-radius: 6px;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    color: var(--text_hover);
+}

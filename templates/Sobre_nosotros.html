@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sobre Nosotros</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 0 20px;
-      color: #333;
-    }
-    h1 { font-size: 2rem; margin-bottom: 10px; }
-    p { line-height: 1.7; color: #555; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros – GastroLab</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre_nosotros.css') }}">
+
 </head>
 <body>
- 
-  <h1>Sobre Nosotros</h1>
-  <p>Somos MUMP.26, el equipo detrás de GastroLab, una plataforma digital creada para modernizar y centralizar la gestión del centro de formación culinaria GastroLab.
-Nuestro proyecto nació de la necesidad de unificar en un solo lugar toda la información del centro: recetas, menús, planificación semanal y datos del personal. Inspirados por instituciones de referencia como el Basque Culinary Centre, desarrollamos una solución web completa, accesible y organizada para estudiantes, personal y administradores.
-A lo largo del desarrollo hemos trabajado con tecnologías como Flask, Jinja y Python en el backend, y MySQL Workbench para la gestión de la base de datos, poniendo especial atención en la seguridad, la usabilidad y la eficiencia del sistema.
-En MUMP.26 creemos en la digitalización como herramienta de mejora real: una cocina bien organizada empieza por una gestión bien diseñada.
+    <header>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>mump.26</p>
+    </header>
+        <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario">RECETARIO</a>
 
-  </p>
- 
+        </div>
+        <div class="nav_sesion">
+            <a href="/inicio_sesion">INICIAR SESIÓN</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="about-section">
+            <h1>Sobre Nosotros</h1>
+            <p>Somos MUMP.26, el equipo detrás de GastroLab, una plataforma digital creada para modernizar y centralizar la gestión del centro de formación culinaria GastroLab. Nuestro proyecto nació de la necesidad de unificar en un solo lugar toda la información del centro: recetas, menús, planificación semanal y datos del personal. Inspirados por instituciones de referencia como el Basque Culinary Centre, desarrollamos una solución web completa, accesible y organizada para estudiantes, personal y administradores. A lo largo del desarrollo hemos trabajado con tecnologías como Flask, Jinja y Python en el backend, y MySQL Workbench para la gestión de la base de datos, poniendo especial atención en la seguridad, la usabilidad y la eficiencia del sistema. En MUMP.26 creemos en la digitalización como herramienta de mejora real: una cocina bien organizada empieza por una gestión bien diseñada.</p>
+        </section>
+    </main>
+<footer>
+<div class="footer-content">
+    <p class="footer-title">Contacto</p>
+    <div class="footer-links">
+        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+        <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+    </div>
+    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+</div>
+</footer>
 </body>
 </html>

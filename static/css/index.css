@@ -1,0 +1,84 @@
+main h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+main h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0.7rem auto 0;
+}
+
+/* ── SECCIÓN (imagen + texto) ── */
+.main_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+
+
+.main_section img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: rgba(58, 159, 255, 0.05);
+}
+
+.main_section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.main_section2 {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    
+}
+/* ── SECCIÓN BIENVENIDA ── */
+main > section:not(.main_section) {
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+}
+
+main > section:not(.main_section) p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+main > section:not(.main_section) p:last-child {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 0.5rem;
+}
+

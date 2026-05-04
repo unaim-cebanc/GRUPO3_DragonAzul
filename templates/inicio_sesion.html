@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_sesion.css') }}">   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>mump.26</p>
+    </header>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+        </div>
+    </nav>
+    <main>
+        <section>
+                <form action="/inicio_sesion" method="post">
+                    <div class="form_wrap">
+                        <h1>Iniciar Sesión</h1>
+                        <p>Accede a tu cuenta de <b>GastroLab</b></p>
+                        <div class="input-wrapper">
+                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de Usuario" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña" required>
+                        </div>
+                        <div class="submit-wrapper">
+                            <input type="submit" value="Iniciar Sesión   &#129034;">
+                        </div>
+                        {% if error %}
+                            <p class="error_msg">Introduce credenciales correctas</p>
+                        {% endif %}
+                    </div>
+                </form>
+        </section>
+    </main>
+<footer>
+<div class="footer-content">
+    <p class="footer-title">Contacto</p>
+    <div class="footer-links">
+        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+        <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+    </div>
+    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+</div>
+</footer>
+</body>
+</html>

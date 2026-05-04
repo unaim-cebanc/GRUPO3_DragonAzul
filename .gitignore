@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+
+# Virtual environment
+.venv/
+
+# Python version manager
+.python-version
+
+# Project config
+uv.lock
+
+# .txt personal
+cosas_a_añadir.txt
