@@ -55,15 +55,36 @@ def is_admin(user):
         return False
     return True
 
+def fetch_recepies_info():
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+    SELECT r.nombre, r.imagen, r.tipo, u.nombre
+    FROM receta r INNER JOIN usuario u ON r.id_usuario = u.id_usuario
+    """
+    CURSOR.execute(query)
+    result = CURSOR.fetchall()
+    close_conn(CONEXION, CURSOR)
+    
+    if result is None:
+        return
+    return result
+
+def insert_recepie(nombre, img, desc, pasos, tiempo_prep, tipo, user_id):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    query = """
+    INSERT INTO receta (nombre, imagen, descripcion, pasos, tiempo_preparacion, tipo, id_usuario) VALUES
+    (%s, %s, %s, %s, %s, %s, %s)
+    """
+    values = (nombre, img, desc, pasos, tiempo_prep, tipo, user_id)
+    
+    CURSOR.execute(query, values)
+    CONEXION.commit()
+    close_conn(CURSOR, CONEXION)
+    print("datos insertados!")
+
+
 if __name__ == "__main__":
-    
-    usuario = input("Introduce tu nombre de usuario: ").strip().lower()
-    contraseña = input("Introduce tu contraseña: ").strip()
-    
-    if validate_user(usuario, contraseña):
-        if is_admin(usuario):
-            print("Sesion iniciada como admin")
-        else:
-            print("Sesion iniciada como invitado")
-    else:
-        print("Credenciales incorrectas")
+    insert_recepie("prueba", "none", "Esto es una receta de prueba", "1. Paso1""2. Paso2""3.Paso3", 60, "normal", 1)

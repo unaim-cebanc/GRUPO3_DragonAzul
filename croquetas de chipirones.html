@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Croquetas de Chipirones</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h1 {
+    color: #34495e;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 750px;
+    margin: auto;
+    text-align: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+/* Despliegue */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2600px;
+    padding-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Croquetas de Chipirones</h1>
+
+<img src="croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp"
+    alt="Croquetas de chipirones"
+    width="500"
+    onclick="toggleInfo()">
+
+<div id="info">
+    <div class="container">
+
+    <h2>Descripción</h2>
+    <p>Cremosas por dentro y crujientes por fuera, estas croquetas de chipirones tienen un sabor intenso a mar, típicas de la cocina española.</p>
+
+    <h2>Raciones</h2>
+    <p>4 personas</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>60 – 90 minutos (incluye reposo de la masa)</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★★ (4/5)</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <li>300 g de chipirones limpios</li>
+        <li>1/2 cebolla</li>
+        <li>2 cucharadas de mantequilla</li>
+        <li>2 cucharadas de harina</li>
+        <li>500 ml de leche</li>
+        <li>Aceite de oliva</li>
+        <li>Sal y pimienta</li>
+        <li>Nuez moscada (opcional)</li>
+        <li>Harina, huevo y pan rallado (para rebozar)</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pica los chipirones y la cebolla muy finos.</li>
+        <li>Sofríe la cebolla y añade los chipirones hasta que suelten el agua.</li>
+        <li>Añade la mantequilla y la harina, removiendo para formar un roux.</li>
+        <li>Incorpora la leche poco a poco sin dejar de remover.</li>
+        <li>Cocina hasta obtener una masa espesa y cremosa.</li>
+        <li>Deja enfriar la masa (mínimo 2 horas en nevera).</li>
+        <li>Forma las croquetas, pásalas por harina, huevo y pan rallado.</li>
+        <li>Fríe en aceite caliente hasta dorar.</li>
+    </ol>
+
+    </div>
+</div>
+
+<script>
+function toggleInfo() {
+    document.getElementById("info").classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
