@@ -1,11 +1,12 @@
 import mysql.connector
 from mysql.connector import errorcode
 import bcrypt
+import bcrypt
 
 # Realiza la conexión con la base de datos
 def try_conn():
     try:
-        cnx = mysql.connector.connect(user='unai', password='unai1234', database='gastrolab')
+        cnx = mysql.connector.connect(user='marta', password='marta1234', database='gastrolab')
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Usuario o constraseña incorrectos!")

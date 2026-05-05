@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Merluza a la Vasca</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h1 {
+    color: #2980b9;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: auto;
+    text-align: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+/* Despliegue */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2000px;
+    padding-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Merluza a la Vasca</h1>
+
+<img src="1366_2000.jpeg"
+    alt="Merluza a la vasca"
+    width="500"
+    onclick="toggleInfo()">
+
+<div id="info">
+    <div class="container">
+
+    <h2>Descripción</h2>
+    <p>Un clásico de la cocina vasca: merluza suave en salsa verde con guisantes, espárragos y huevo cocido.</p>
+
+    <h2>Raciones</h2>
+    <p>2-3 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★★ (4/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>30-40 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+    <li>4 rodajas de merluza</li>
+    <li>2 dientes de ajo</li>
+    <li>1 cebolla</li>
+    <li>100 g de guisantes</li>
+    <li>2 huevos cocidos</li>
+    <li>1 vaso de caldo de pescado</li>
+    <li>Vino blanco (opcional)</li>
+    <li>Perejil fresco</li>
+    <li>Aceite de oliva</li>
+    <li>Sal y pimienta</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pocha la cebolla y el ajo en aceite de oliva.</li>
+        <li>Añade una cucharada de harina (opcional) y remueve.</li>
+        <li>Incorpora el vino blanco y el caldo de pescado.</li>
+        <li>Añade los guisantes y cocina unos minutos.</li>
+        <li>Coloca la merluza en la salsa y cocina 8-10 minutos.</li>
+        <li>Agrega los huevos cocidos en cuartos.</li>
+        <li>Espolvorea perejil fresco y sirve caliente.</li>
+    </ol>
+
+    </div>
+</div>
+
+<script>
+function toggleInfo() {
+    document.getElementById("info").classList.toggle("open");
+}
+</script>
+
+</body>
+</html>

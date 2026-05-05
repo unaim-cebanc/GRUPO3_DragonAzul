@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Risotto de Verduras</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h1 {
+    color: #16a085;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 750px;
+    margin: auto;
+    text-align: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+/* Despliegue */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2600px;
+    padding-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Risotto de Verduras</h1>
+
+<img src="risotto-de-verduras.jpg"
+    alt="Risotto de verduras"
+    width="500"
+    onclick="toggleInfo()">
+
+<div id="info">
+    <div class="container">
+
+    <h2>Descripción</h2>
+    <p>Un plato italiano cremoso y reconfortante, elaborado con arroz y verduras frescas, ideal como comida principal.</p>
+
+    <h2>Raciones</h2>
+    <p>2-3 personas</p>
+
+    <h2>Tiempo total</h2>
+    <p>30 – 40 minutos</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★ (3/5)</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <li>200 g de arroz arborio</li>
+        <li>1/2 cebolla</li>
+        <li>1 calabacín</li>
+        <li>1 zanahoria</li>
+        <li>100 g de champiñones</li>
+        <li>750 ml de caldo de verduras caliente</li>
+        <li>50 g de queso parmesano (opcional)</li>
+        <li>1 cucharada de mantequilla o aceite de oliva</li>
+        <li>Vino blanco (opcional)</li>
+        <li>Sal y pimienta</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pica la cebolla y las verduras en trozos pequeños.</li>
+        <li>Sofríe la cebolla en aceite o mantequilla.</li>
+        <li>Añade las verduras y cocina unos minutos.</li>
+        <li>Incorpora el arroz y rehógalo ligeramente.</li>
+        <li>Añade un chorrito de vino blanco (opcional).</li>
+        <li>Ve agregando caldo caliente poco a poco mientras remueves.</li>
+        <li>Cocina durante 18-20 minutos hasta que el arroz esté cremoso.</li>
+        <li>Añade queso parmesano al final (opcional) y mezcla.</li>
+        <li>Sirve caliente.</li>
+    </ol>
+
+    </div>
+</div>
+
+<script>
+function toggleInfo() {
+    document.getElementById("info").classList.toggle("open");
+}
+</script>
+
+</body>
+</html>

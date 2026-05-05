@@ -1,0 +1,9 @@
+section {
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}

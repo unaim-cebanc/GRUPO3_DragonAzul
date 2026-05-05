@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Recetario Interactivo</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 20px;
+}
+
+h1 {
+    color: #00d300b0;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
+}
+
+/* GRID tipo tabla */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 300px;
+    margin: auto;
+    border: 2px solid #555;
+}
+
+.cell {
+    border: 1px solid #555;
+    padding: 10px;
+    background-color: #ddd;
+}
+
+.info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: white;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+.info.open {
+    max-height: 200px;
+    padding: 10px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-right: auto;
+    text-align: left;
+    float: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    float: left;
+}
+
+img:hover {
+    transform: scale(1.03);
+    display: inline-block;
+}
+
+/* Desplegable */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2000px;
+    padding-top: 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Recetario Interactivo</h1>
+
+<!-- PAD THAI -->
+<img src="vegan-pad-thai-11-1.jpg" alt="Pad Thai vegano" width="200" onclick="toggleInfo(this)">
+
+<div class="info">
+    <div class="container">
+    <h1>Pad Thai Vegano Casero</h1>
+
+    <h2>Raciones</h2>
+    <p>3 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★ (3/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>25-35 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <li>150 g de fideos de arroz</li>
+        <li>1 zanahoria rallada</li>
+        <li>1 pimiento rojo en tiras</li>
+        <li>100 g de tofu firme</li>
+        <li>Salsa de soja</li>
+        <li>Pasta de tamarindo</li>
+    </ul>
+
+    <h2>Preparación</h2>
+        <li>Cocina los fideos de arroz según las instrucciones del paquete y resérvalos.</li> 
+        <li>En una sartén grande o wok, calienta el aceite y saltea el ajo durante 1 minuto.</li> 
+        <li>Añade el tofu y dóralo ligeramente.</li> 
+        <li>Incorpora la zanahoria y el pimiento, y cocina durante 3-4 minutos.</li> 
+        <li>Agrega los fideos cocidos.</li> <li>Mezcla la salsa de soja, el tamarindo y el sirope, y vierte sobre los fideos.</li> 
+        <li>Remueve bien para que todo se impregne del sabor.</li> 
+        <li>Añade los brotes de soja y cocina 2 minutos más.</li> 
+        <li>Sirve caliente con cacahuetes, cilantro y un chorrito de lima.</li> 
+</ol>
+</div>
+</div>
+
+<!-- TOFU -->
+
+<img src="1366_2000.jpg" alt="Revuelto vegano de tofu" width="200" onclick="toggleInfo(this)">
+
+<div class="info">
+    <div class="container">
+    <h1>Revuelto Vegano de Tofu</h1>
+    <h2>Descripción</h2>
+    <p>Un desayuno o cena saludable, rápido y proteico. El tofu sustituye al huevo con especias que le dan un sabor increíble.</p>
+
+    <h2>Raciones</h2>
+    <p>2 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★ (2/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>10-15 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+    <li>200 g de tofu firme</li>
+    <li>1/2 cebolla picada</li>
+    <li>1/2 pimiento rojo</li>
+    <li>1 cucharadita de cúrcuma</li>
+    <li>1 cucharada de aceite de oliva</li>
+    <li>Sal y pimienta al gusto</li>
+    <li>Levadura nutricional (opcional)</li>
+    <li>Espinacas frescas (opcional)</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+    <li>Desmenuza el tofu con un tenedor.</li>
+    <li>Saltea la cebolla y el pimiento en una sartén.</li>
+    <li>Añade el tofu y la cúrcuma.</li>
+    <li>Remueve bien durante 5-7 minutos.</li>
+    <li>Salpimenta y añade espinacas al final.</li>
+    <li>Sirve caliente con pan o tostadas.</li>
+    </ol>
+
+    </div>
+</div>
+
+<!-- MERLUZA -->
+
+<img src="1366_2000.jpeg" alt="Merluza a la vasca" width="200" onclick="toggleInfo(this)">
+
+<div class="info">
+    <div class="container">
+    <h1>Merluza a la Vasca</h1>
+    <h2>Descripción</h2>
+    <p>Un clásico de la cocina vasca: merluza suave en salsa verde con guisantes, espárragos y huevo cocido.</p>
+
+    <h2>Raciones</h2>
+    <p>2-3 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★★ (4/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>30-40 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+    <li>4 rodajas de merluza</li>
+    <li>2 dientes de ajo</li>
+    <li>1 cebolla</li>
+    <li>100 g de guisantes</li>
+    <li>2 huevos cocidos</li>
+    <li>1 vaso de caldo de pescado</li>
+    <li>Vino blanco (opcional)</li>
+    <li>Perejil fresco</li>
+    <li>Aceite de oliva</li>
+    <li>Sal y pimienta</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pocha la cebolla y el ajo en aceite de oliva.</li>
+        <li>Añade una cucharada de harina (opcional) y remueve.</li>
+        <li>Incorpora el vino blanco y el caldo de pescado.</li>
+        <li>Añade los guisantes y cocina unos minutos.</li>
+        <li>Coloca la merluza en la salsa y cocina 8-10 minutos.</li>
+        <li>Agrega los huevos cocidos en cuartos.</li>
+        <li>Espolvorea perejil fresco y sirve caliente.</li>
+    </ol>
+
+    </div>
+</div>
+
+<!-- BLANQUETA -->
+
+<img src="2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg"
+    alt="Blanqueta de albóndigas" width="200" onclick="toggleInfo(this)">
+    
+<div class="info">
+    <div class="container">
+    <h1>Blanqueta de Albóndigas</h1>
+    <h2>Descripción</h2>
+    <p>Un guiso tradicional cremoso con albóndigas en salsa blanca suave, cebolla, zanahoria y champiñones.</p>
+
+    <h2>Raciones</h2>
+    <p>3-4 personas</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>45 – 60 minutos</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★ (3/5)</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+    <li>500 g de carne picada (ternera o mixta)</li>
+    <li>1 huevo</li>
+    <li>2 dientes de ajo</li>
+    <li>1 cebolla</li>
+    <li>2 zanahorias</li>
+    <li>150 g de champiñones</li>
+    <li>200 ml de nata para cocinar</li>
+    <li>500 ml de caldo de carne</li>
+    <li>Harina (para espesar)</li>
+    <li>Aceite de oliva</li>
+    <li>Sal y pimienta</li>
+    <li>Perejil fresco</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+    <li>Forma las albóndigas con la carne, huevo, ajo, sal y pimienta.</li>
+    <li>Dóralas ligeramente en una sartén y resérvalas.</li>
+    <li>En la misma olla, sofríe cebolla, zanahoria y champiñones.</li>
+    <li>Añade una cucharada de harina y remueve.</li>
+    <li>Incorpora el caldo y cocina la salsa 10 minutos.</li>
+    <li>Añade las albóndigas y cocina a fuego medio 20-25 minutos.</li>
+    <li>Agrega la nata al final y mezcla suavemente.</li>
+    <li>Decora con perejil y sirve caliente.</li>
+    </ol>
+
+    </div>
+</div>
+
+<!-- CROQUETAS -->
+
+<img src="croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp"
+    alt="Croquetas de chipirones" width="200" onclick="toggleInfo(this)">
+
+<div class="info">
+    <div class="container">
+    <h1>Croquetas de Chipirones</h1>
+    <h2>Descripción</h2>
+    <p>Cremosas por dentro y crujientes por fuera, estas croquetas de chipirones tienen un sabor intenso a mar, típicas de la cocina española.</p>
+
+    <h2>Raciones</h2>
+    <p>4 personas</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>60 – 90 minutos (incluye reposo de la masa)</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★★ (4/5)</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <li>300 g de chipirones limpios</li>
+        <li>1/2 cebolla</li>
+        <li>2 cucharadas de mantequilla</li>
+        <li>2 cucharadas de harina</li>
+        <li>500 ml de leche</li>
+        <li>Aceite de oliva</li>
+        <li>Sal y pimienta</li>
+        <li>Nuez moscada (opcional)</li>
+        <li>Harina, huevo y pan rallado (para rebozar)</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pica los chipirones y la cebolla muy finos.</li>
+        <li>Sofríe la cebolla y añade los chipirones hasta que suelten el agua.</li>
+        <li>Añade la mantequilla y la harina, removiendo para formar un roux.</li>
+        <li>Incorpora la leche poco a poco sin dejar de remover.</li>
+        <li>Cocina hasta obtener una masa espesa y cremosa.</li>
+        <li>Deja enfriar la masa (mínimo 2 horas en nevera).</li>
+        <li>Forma las croquetas, pásalas por harina, huevo y pan rallado.</li>
+        <li>Fríe en aceite caliente hasta dorar.</li>
+    </ol>
+
+    </div>
+</div>
+
+<!-- RISOTTO -->
+
+<img src="risotto-de-verduras.jpg" alt="Risotto de verduras" width="200" onclick="toggleInfo(this)">
+
+<div class="info">
+    <div class="container">
+    <h1>Risotto de Verduras</h1>
+    <h2>Descripción</h2>
+    <p>Un plato italiano cremoso y reconfortante, elaborado con arroz y verduras frescas, ideal como comida principal.</p>
+
+    <h2>Raciones</h2>
+    <p>2-3 personas</p>
+
+    <h2>Tiempo total</h2>
+    <p>30 – 40 minutos</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★★ (3/5)</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+        <li>200 g de arroz arborio</li>
+        <li>1/2 cebolla</li>
+        <li>1 calabacín</li>
+        <li>1 zanahoria</li>
+        <li>100 g de champiñones</li>
+        <li>750 ml de caldo de verduras caliente</li>
+        <li>50 g de queso parmesano (opcional)</li>
+        <li>1 cucharada de mantequilla o aceite de oliva</li>
+        <li>Vino blanco (opcional)</li>
+        <li>Sal y pimienta</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+        <li>Pica la cebolla y las verduras en trozos pequeños.</li>
+        <li>Sofríe la cebolla en aceite o mantequilla.</li>
+        <li>Añade las verduras y cocina unos minutos.</li>
+        <li>Incorpora el arroz y rehógalo ligeramente.</li>
+        <li>Añade un chorrito de vino blanco (opcional).</li>
+        <li>Ve agregando caldo caliente poco a poco mientras remueves.</li>
+        <li>Cocina durante 18-20 minutos hasta que el arroz esté cremoso.</li>
+        <li>Añade queso parmesano al final (opcional) y mezcla.</li>
+        <li>Sirve caliente.</li>
+    </ol>
+
+    </div>
+</div>
+
+<script>
+function toggleInfo(img) {
+    const info = img.nextElementSibling;
+
+    if (info.style.maxHeight) {
+        info.style.maxHeight = null;
+    } else {
+        info.style.maxHeight = info.scrollHeight + "px";
+    }
+} 
+</script>
+
+</body>
+</html>

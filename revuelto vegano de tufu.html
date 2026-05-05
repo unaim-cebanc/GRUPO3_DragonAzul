@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Revuelto Vegano de Tofu</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h1 {
+    color: #27ae60;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.rating {
+    color: #f1c40f;
+    font-size: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 650px;
+    margin: auto;
+    text-align: left;
+}
+
+img {
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
+/* Despliegue */
+#info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.3s ease;
+}
+
+#info.open {
+    max-height: 2000px;
+    padding-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Revuelto Vegano de Tofu</h1>
+
+<img src="1366_2000.jpg"
+    alt="Revuelto vegano de tofu"
+    width="500"
+    onclick="toggleInfo()">
+
+<div id="info">
+    <div class="container">
+
+    <h2>Descripción</h2>
+    <p>Un desayuno o cena saludable, rápido y proteico. El tofu sustituye al huevo con especias que le dan un sabor increíble.</p>
+
+    <h2>Raciones</h2>
+    <p>2 personas</p>
+
+    <h2>Nivel de dificultad</h2>
+    <p class="rating">★★ (2/5)</p>
+
+    <h2>Tiempo de preparación</h2>
+    <p>10-15 mins</p>
+
+    <h2>Ingredientes</h2>
+    <ul>
+    <li>200 g de tofu firme</li>
+    <li>1/2 cebolla picada</li>
+    <li>1/2 pimiento rojo</li>
+    <li>1 cucharadita de cúrcuma</li>
+    <li>1 cucharada de aceite de oliva</li>
+    <li>Sal y pimienta al gusto</li>
+    <li>Levadura nutricional (opcional)</li>
+    <li>Espinacas frescas (opcional)</li>
+    </ul>
+
+    <h2>Preparación</h2>
+    <ol>
+    <li>Desmenuza el tofu con un tenedor.</li>
+    <li>Saltea la cebolla y el pimiento en una sartén.</li>
+    <li>Añade el tofu y la cúrcuma.</li>
+    <li>Remueve bien durante 5-7 minutos.</li>
+    <li>Salpimenta y añade espinacas al final.</li>
+    <li>Sirve caliente con pan o tostadas.</li>
+    </ol>
+
+    </div>
+</div>
+
+<script>
+function toggleInfo() {
+document.getElementById("info").classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
