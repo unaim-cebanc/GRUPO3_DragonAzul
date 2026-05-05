@@ -1,0 +1,765 @@
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
+--
+-- Host: localhost    Database: gastrolab
+-- ------------------------------------------------------
+-- Server version	8.0.44
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ingrediente`
+--
+
+DROP TABLE IF EXISTS `ingrediente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ingrediente` (
+  `id_ingrediente` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `calorias` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id_ingrediente`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingrediente`
+--
+
+LOCK TABLES `ingrediente` WRITE;
+/*!40000 ALTER TABLE `ingrediente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingrediente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `menu`
+--
+
+DROP TABLE IF EXISTS `menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `menu` (
+  `id_menu` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_menu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `menu`
+--
+
+LOCK TABLES `menu` WRITE;
+/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `menu_receta`
+--
+
+DROP TABLE IF EXISTS `menu_receta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `menu_receta` (
+  `id_menu` int NOT NULL,
+  `id_receta` int NOT NULL,
+  PRIMARY KEY (`id_menu`,`id_receta`),
+  KEY `id_receta` (`id_receta`),
+  CONSTRAINT `menu_receta_ibfk_1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`),
+  CONSTRAINT `menu_receta_ibfk_2` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `menu_receta`
+--
+
+LOCK TABLES `menu_receta` WRITE;
+/*!40000 ALTER TABLE `menu_receta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `menu_receta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `multimedia`
+--
+
+DROP TABLE IF EXISTS `multimedia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `multimedia` (
+  `id_multimedia` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `exclusivo` tinyint(1) DEFAULT '1',
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_multimedia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `multimedia`
+--
+
+LOCK TABLES `multimedia` WRITE;
+/*!40000 ALTER TABLE `multimedia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `multimedia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nomina`
+--
+
+DROP TABLE IF EXISTS `nomina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nomina` (
+  `id_nomina` int NOT NULL AUTO_INCREMENT,
+  `id_personal` int NOT NULL,
+  `fecha` date NOT NULL,
+  `salario_base` decimal(10,2) NOT NULL,
+  `extras` decimal(10,2) DEFAULT '0.00',
+  `total` decimal(10,2) GENERATED ALWAYS AS ((`salario_base` + `extras`)) STORED,
+  PRIMARY KEY (`id_nomina`),
+  KEY `id_personal` (`id_personal`),
+  CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nomina`
+--
+
+LOCK TABLES `nomina` WRITE;
+/*!40000 ALTER TABLE `nomina` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nomina` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pasos`
+--
+
+DROP TABLE IF EXISTS `pasos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pasos` (
+  `id_paso` int NOT NULL AUTO_INCREMENT,
+  `id_receta` int NOT NULL,
+  `paso` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id_paso`),
+  KEY `fk_pasos_01` (`id_receta`),
+  CONSTRAINT `fk_pasos_01` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pasos`
+--
+
+LOCK TABLES `pasos` WRITE;
+/*!40000 ALTER TABLE `pasos` DISABLE KEYS */;
+INSERT INTO `pasos` VALUES (1,1,'paso1'),(2,1,'paso2'),(3,2,'paso1'),(4,2,'paso2');
+/*!40000 ALTER TABLE `pasos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personal`
+--
+
+DROP TABLE IF EXISTS `personal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal` (
+  `id_personal` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `puesto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salario` decimal(10,2) DEFAULT NULL,
+  `id_usuario` int DEFAULT NULL,
+  PRIMARY KEY (`id_personal`),
+  UNIQUE KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal`
+--
+
+LOCK TABLES `personal` WRITE;
+/*!40000 ALTER TABLE `personal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `receta`
+--
+
+DROP TABLE IF EXISTS `receta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `receta` (
+  `id_receta` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagen` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `tiempo_preparacion` int DEFAULT NULL,
+  `tipo` enum('normal','vegetariana','vegana') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'normal',
+  `id_usuario` int DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_receta`),
+  KEY `receta_ibfk_1` (`id_usuario`),
+  CONSTRAINT `receta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `receta`
+--
+
+LOCK TABLES `receta` WRITE;
+/*!40000 ALTER TABLE `receta` DISABLE KEYS */;
+INSERT INTO `receta` VALUES (1,'Pad Thai','static/images/vegan-pad-thai-11-1.jpg','desc',35,'vegetariana',1,'2026-05-04 22:37:58'),(2,'Revuelto Vegano de Tofu','static/images/1366_2000.jpg','desc',15,'vegana',1,'2026-05-04 22:38:49'),(3,'Merluza a la vasca','static/images/1366_2000.jpeg','desc',40,'normal',1,'2026-05-05 10:57:18'),(4,'Blanqueta de albondigas','static/images/2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg','desc',60,'normal',1,'2026-05-05 10:58:31'),(5,'Croquetas de chipirones','static/images/croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp','desc',90,'normal',1,'2026-05-05 10:59:33'),(6,'Risotto de verduras','static/images/risotto-de-verduras.jpg','desc',40,'normal',1,'2026-05-05 11:00:30');
+/*!40000 ALTER TABLE `receta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `receta_ingrediente`
+--
+
+DROP TABLE IF EXISTS `receta_ingrediente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `receta_ingrediente` (
+  `id_ingrediente` int NOT NULL AUTO_INCREMENT,
+  `id_receta` int NOT NULL,
+  `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cantidad` decimal(8,2) DEFAULT NULL,
+  `unidad` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_ingrediente`,`id_receta`),
+  KEY `fk_receta_ingredientes_01` (`id_receta`),
+  CONSTRAINT `fk_receta_ingredientes_01` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `receta_ingrediente`
+--
+
+LOCK TABLES `receta_ingrediente` WRITE;
+/*!40000 ALTER TABLE `receta_ingrediente` DISABLE KEYS */;
+INSERT INTO `receta_ingrediente` VALUES (1,1,'ingrediente1',1.00,'mg'),(2,1,'ingrediente2',2.00,'mg'),(3,1,'ingrediente3',3.00,'mg'),(4,2,'ingrediente1',1.00,'mg'),(5,2,'ingrediente2',2.00,'mg');
+/*!40000 ALTER TABLE `receta_ingrediente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rol`
+--
+
+DROP TABLE IF EXISTS `rol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rol` (
+  `id_rol` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_rol`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rol`
+--
+
+LOCK TABLES `rol` WRITE;
+/*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'admin'),(3,'alumno'),(2,'usuario');
+/*!40000 ALTER TABLE `rol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contrasena` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_rol` int NOT NULL DEFAULT '0',
+  `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `email` (`email`),
+  KEY `id_rol` (`id_rol`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'prueba','prueba@prueba.com','12345',1,'9999-01-01 00:00:00'),(2,'prueba2','prueba2@prueba.com','1234',0,'9999-01-01 00:00:00'),(3,'unai','unai@prueba.com','prueba123',0,'2026-05-05 09:04:30');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `valoracion`
+--
+
+DROP TABLE IF EXISTS `valoracion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `valoracion` (
+  `id_valoracion` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_receta` int NOT NULL,
+  `puntuacion` tinyint NOT NULL,
+  `comentario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_valoracion`),
+  UNIQUE KEY `unico_voto` (`id_usuario`,`id_receta`),
+  KEY `valoracion_ibfk_2` (`id_receta`),
+  CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `valoracion_ibfk_2` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `valoracion_chk_1` CHECK ((`puntuacion` between 1 and 5))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `valoracion`
+--
+
+LOCK TABLES `valoracion` WRITE;
+/*!40000 ALTER TABLE `valoracion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `valoracion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `vista_calorias_receta`
+--
+
+DROP TABLE IF EXISTS `vista_calorias_receta`;
+/*!50001 DROP VIEW IF EXISTS `vista_calorias_receta`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_calorias_receta` AS SELECT 
+ 1 AS `id_receta`,
+ 1 AS `receta`,
+ 1 AS `tipo`,
+ 1 AS `calorias_totales`,
+ 1 AS `num_ingredientes`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vista_menu_hoy`
+--
+
+DROP TABLE IF EXISTS `vista_menu_hoy`;
+/*!50001 DROP VIEW IF EXISTS `vista_menu_hoy`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_menu_hoy` AS SELECT 
+ 1 AS `menu`,
+ 1 AS `tipo`,
+ 1 AS `receta`,
+ 1 AS `tipo_receta`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vista_multimedia_exclusiva`
+--
+
+DROP TABLE IF EXISTS `vista_multimedia_exclusiva`;
+/*!50001 DROP VIEW IF EXISTS `vista_multimedia_exclusiva`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_multimedia_exclusiva` AS SELECT 
+ 1 AS `id_multimedia`,
+ 1 AS `titulo`,
+ 1 AS `tipo`,
+ 1 AS `url`,
+ 1 AS `fecha`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vista_nominas_personal`
+--
+
+DROP TABLE IF EXISTS `vista_nominas_personal`;
+/*!50001 DROP VIEW IF EXISTS `vista_nominas_personal`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_nominas_personal` AS SELECT 
+ 1 AS `empleado`,
+ 1 AS `puesto`,
+ 1 AS `fecha`,
+ 1 AS `salario_base`,
+ 1 AS `extras`,
+ 1 AS `total`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vista_recetas_valoradas`
+--
+
+DROP TABLE IF EXISTS `vista_recetas_valoradas`;
+/*!50001 DROP VIEW IF EXISTS `vista_recetas_valoradas`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_recetas_valoradas` AS SELECT 
+ 1 AS `id_receta`,
+ 1 AS `nombre`,
+ 1 AS `tipo`,
+ 1 AS `tiempo_preparacion`,
+ 1 AS `autor`,
+ 1 AS `media_puntuacion`,
+ 1 AS `total_votos`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `vista_recetas_veganas`
+--
+
+DROP TABLE IF EXISTS `vista_recetas_veganas`;
+/*!50001 DROP VIEW IF EXISTS `vista_recetas_veganas`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `vista_recetas_veganas` AS SELECT 
+ 1 AS `id_receta`,
+ 1 AS `nombre`,
+ 1 AS `tipo`,
+ 1 AS `tiempo_preparacion`,
+ 1 AS `autor`,
+ 1 AS `media_puntuacion`,
+ 1 AS `total_votos`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping events for database 'gastrolab'
+--
+
+--
+-- Dumping routines for database 'gastrolab'
+--
+/*!50003 DROP FUNCTION IF EXISTS `fn_calorias_receta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fn_calorias_receta`(p_id INT) RETURNS decimal(10,2)
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+    DECLARE total DECIMAL(10,2) DEFAULT 0;
+
+    SELECT COALESCE(SUM(i.calorias * ri.cantidad), 0)
+    INTO   total
+    FROM   receta_ingrediente ri
+    JOIN   ingrediente i ON ri.id_ingrediente = i.id_ingrediente
+    WHERE  ri.id_receta = p_id;
+
+    RETURN total;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `fn_categoria_calorica` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fn_categoria_calorica`(p_calorias DECIMAL(10,2)) RETURNS varchar(20) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci
+    NO SQL
+    DETERMINISTIC
+BEGIN
+    DECLARE categoria VARCHAR(20);
+
+    IF p_calorias < 300 THEN
+        SET categoria = 'ligera';
+    ELSEIF p_calorias < 700 THEN
+        SET categoria = 'media';
+    ELSE
+        SET categoria = 'contundente';
+    END IF;
+
+    RETURN categoria;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `crear_receta_completa` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crear_receta_completa`(
+    IN p_nombre      VARCHAR(150),
+    IN p_descripcion TEXT,
+    IN p_pasos       TEXT,
+    IN p_tiempo      INT,
+    IN p_tipo        ENUM('normal','vegetariana','vegana'),
+    IN p_id_usuario  INT
+)
+BEGIN
+    DECLARE existe INT DEFAULT 0;
+
+    SELECT COUNT(*) INTO existe FROM receta WHERE nombre = p_nombre;
+
+    IF existe > 0 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Ya existe una receta con ese nombre';
+    ELSE
+        INSERT INTO receta (nombre, descripcion, pasos, tiempo_preparacion, tipo, id_usuario)
+        VALUES (p_nombre, p_descripcion, p_pasos, p_tiempo, p_tipo, p_id_usuario);
+
+        SELECT LAST_INSERT_ID() AS id_receta_creada;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `generar_nomina` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `generar_nomina`(
+    IN p_id_personal  INT,
+    IN p_fecha        DATE,
+    IN p_salario_base DECIMAL(10,2),
+    IN p_extras       DECIMAL(10,2)
+)
+BEGIN
+    INSERT INTO nomina (id_personal, fecha, salario_base, extras)
+    VALUES (p_id_personal, p_fecha, p_salario_base, p_extras);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `informe_receta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `informe_receta`(IN p_id_receta INT)
+BEGIN
+    DECLARE calorias  DECIMAL(10,2) DEFAULT 0;
+    DECLARE categoria VARCHAR(20)   DEFAULT '';
+
+    SET calorias  = fn_calorias_receta(p_id_receta);
+    SET categoria = fn_categoria_calorica(calorias);
+
+    SELECT
+        r.id_receta,
+        r.nombre,
+        r.tipo,
+        r.tiempo_preparacion,
+        u.nombre AS autor,
+        calorias AS calorias_totales,
+        categoria AS categoria_calorica,
+        ROUND(AVG(v.puntuacion), 2) AS media_puntuacion,
+        COUNT(v.id_valoracion)      AS total_votos
+    FROM receta r
+    LEFT JOIN usuario    u ON r.id_usuario = u.id_usuario
+    LEFT JOIN valoracion v ON r.id_receta  = v.id_receta
+    WHERE r.id_receta = p_id_receta
+    GROUP BY r.id_receta, r.nombre, r.tipo, r.tiempo_preparacion, u.nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `top_recetas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `top_recetas`(IN p_limite INT)
+BEGIN
+    IF p_limite < 1 THEN
+        SET p_limite = 10;
+    END IF;
+
+    SELECT * FROM vista_recetas_valoradas
+    ORDER BY media_puntuacion DESC
+    LIMIT p_limite;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `vista_calorias_receta`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_calorias_receta`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_calorias_receta` AS select `r`.`id_receta` AS `id_receta`,`r`.`nombre` AS `receta`,`r`.`tipo` AS `tipo`,sum((`i`.`calorias` * `ri`.`cantidad`)) AS `calorias_totales`,count(`ri`.`id_ingrediente`) AS `num_ingredientes` from ((`receta` `r` join `receta_ingrediente` `ri` on((`r`.`id_receta` = `ri`.`id_receta`))) join `ingrediente` `i` on((`ri`.`id_ingrediente` = `i`.`id_ingrediente`))) group by `r`.`id_receta`,`r`.`nombre`,`r`.`tipo` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vista_menu_hoy`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_menu_hoy`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_menu_hoy` AS select `m`.`nombre` AS `menu`,`m`.`tipo` AS `tipo`,`r`.`nombre` AS `receta`,`r`.`tipo` AS `tipo_receta` from ((`menu` `m` join `menu_receta` `mr` on((`m`.`id_menu` = `mr`.`id_menu`))) join `receta` `r` on((`mr`.`id_receta` = `r`.`id_receta`))) where (`m`.`fecha` = curdate()) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vista_multimedia_exclusiva`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_multimedia_exclusiva`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_multimedia_exclusiva` AS select `multimedia`.`id_multimedia` AS `id_multimedia`,`multimedia`.`titulo` AS `titulo`,`multimedia`.`tipo` AS `tipo`,`multimedia`.`url` AS `url`,`multimedia`.`fecha` AS `fecha` from `multimedia` where (`multimedia`.`exclusivo` = true) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vista_nominas_personal`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_nominas_personal`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_nominas_personal` AS select `p`.`nombre` AS `empleado`,`p`.`puesto` AS `puesto`,`n`.`fecha` AS `fecha`,`n`.`salario_base` AS `salario_base`,`n`.`extras` AS `extras`,`n`.`total` AS `total` from (`personal` `p` join `nomina` `n` on((`p`.`id_personal` = `n`.`id_personal`))) order by `n`.`fecha` desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vista_recetas_valoradas`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_recetas_valoradas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_recetas_valoradas` AS select `r`.`id_receta` AS `id_receta`,`r`.`nombre` AS `nombre`,`r`.`tipo` AS `tipo`,`r`.`tiempo_preparacion` AS `tiempo_preparacion`,`u`.`nombre` AS `autor`,round(avg(`v`.`puntuacion`),2) AS `media_puntuacion`,count(`v`.`id_valoracion`) AS `total_votos` from ((`receta` `r` left join `usuario` `u` on((`r`.`id_usuario` = `u`.`id_usuario`))) left join `valoracion` `v` on((`r`.`id_receta` = `v`.`id_receta`))) group by `r`.`id_receta`,`r`.`nombre`,`r`.`tipo`,`r`.`tiempo_preparacion`,`u`.`nombre` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vista_recetas_veganas`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vista_recetas_veganas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb3 */;
+/*!50001 SET character_set_results     = utf8mb3 */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vista_recetas_veganas` AS select `vista_recetas_valoradas`.`id_receta` AS `id_receta`,`vista_recetas_valoradas`.`nombre` AS `nombre`,`vista_recetas_valoradas`.`tipo` AS `tipo`,`vista_recetas_valoradas`.`tiempo_preparacion` AS `tiempo_preparacion`,`vista_recetas_valoradas`.`autor` AS `autor`,`vista_recetas_valoradas`.`media_puntuacion` AS `media_puntuacion`,`vista_recetas_valoradas`.`total_votos` AS `total_votos` from `vista_recetas_valoradas` where (`vista_recetas_valoradas`.`tipo` = 'vegana') order by `vista_recetas_valoradas`.`media_puntuacion` desc */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-05-05 12:20:43
