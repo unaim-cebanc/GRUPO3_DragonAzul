@@ -35,6 +35,10 @@ def recetario():
     recetas = sql_scripts.fetch_recepies_info()
     return render_template("recetario.html", recetas = recetas)
 
+@app.route("/integrantes")
+def integrantes():
+    return render_template("integrantes.html")
+
 def main():
     app.run(debug=True)
 
