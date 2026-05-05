@@ -140,3 +140,8 @@ input[type="submit"]:hover {
     cursor: pointer;
     color: var(--text_hover);
 }
+
+form p a {
+    text-decoration: none;
+    font-weight: 600;
+}

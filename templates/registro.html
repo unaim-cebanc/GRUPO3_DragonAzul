@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_sesion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Registro</title>
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>mump.26</p>
+    </header>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <form action="/registro" method="post">
+                <div class="form_wrap">
+                    <h1>Registro</h1>
+                    <p>Crea tu cuenta de <b>GastroLab</b></p>
+                    <div class="input-wrapper">
+                        <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="email" name="email" id="email" placeholder="Introduce tu correo" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="contrasena" id="contrasena" placeholder="Introduce contraseña" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="contrasena_check" id="contrasena_check" placeholder="Repite la contraseña" required>
+                    </div>
+                    <div class="input-wrapper">
+                    <input type="submit" value="Registrarse   &#129034;">
+                    </div>
+                    <p>¿Ya tienes una cuenta? <a href="/inicio_sesion">Inicia Sesion</a></p>
+                    {% if pass_error %}
+                        <p class="error_msg">Las contraseñas introducidas no coinciden</p>
+                    {% endif %}
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+    <div class="footer-content">
+        <p class="footer-title">Contacto</p>
+        <div class="footer-links">
+            <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+            <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+            <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+        </div>
+        <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+    </div>
+    </footer>
+</body>
+</html>
