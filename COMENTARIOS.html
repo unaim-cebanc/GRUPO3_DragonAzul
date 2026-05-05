@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentarios</title>
+</head>
+<body>
+
+<h2>Comentarios</h2>
+
+<form action="/comentarios/nuevo" method="POST">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="mensaje">Comentario:</label><br>
+    <textarea id="mensaje" name="mensaje" rows="4" cols="40" required></textarea><br><br>
+
+    <button type="submit">Enviar comentario</button>
+</form>
+
+<hr>
+
+{% if comentarios %}
+    {% for c in comentarios %}
+        <p><strong>{{ c.nombre }}</strong> — <em>{{ c.fecha }}</em></p>
+        <p>{{ c.mensaje }}</p>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No hay comentarios todavía.</p>
+{% endif %}
+
+</body>
+</html>
