@@ -4,7 +4,7 @@ from mysql.connector import errorcode
 # Realiza la conexión con la base de datos
 def try_conn():
     try:
-        cnx = mysql.connector.connect(user='unai', password='unai1234', database='gastrolab')
+        cnx = mysql.connector.connect(user='marta', password='marta1234', database='gastrolab')
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Usuario o constraseña incorrectos!")
@@ -85,6 +85,19 @@ def insert_recepie(nombre, img, desc, pasos, tiempo_prep, tipo, user_id):
     close_conn(CURSOR, CONEXION)
     print("datos insertados!")
 
+def validar_usuario (usuario, contrasena):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    query = """
+    SELECT * FROM usuario WHERE nombre = %s AND contrasena = %s"""
+    values = (usuario, contrasena)
+
+    CURSOR.execute(query, values)
+    result = CURSOR.fetchall()
+    close_conn(CURSOR, CONEXION)
+
+    return usuario, contrasena
+    
 
 if __name__ == "__main__":
     insert_recepie("prueba", "none", "Esto es una receta de prueba", "1. Paso1""2. Paso2""3.Paso3", 60, "normal", 1)
