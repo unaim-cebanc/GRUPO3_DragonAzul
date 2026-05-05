@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename='js/subir_receta.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subir_receta.css') }}">
+    <title>Subir Receta</title>
+</head>
+<body>
+    <header>
+        <img src="/static/images/logo.png" alt="logo.png">
+        <p>mump.26</p>
+    </header>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario">RECETARIO</a>
+        </div>
+        <div class="nav_sesion">
+            <a href="/inicio_sesion">INICIAR SESIÓN</a>
+        </div>
+    </nav>
+    <main>
+        <h1>SUBIR RECETA</h1>
+        <section>
+            <form action="/subir_receta" enctype="multipart/form-data" method="post">
+                <label for="nombre">Título:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Insertar título" required>
+                
+                <label for="imagen">Subir imagen:</label>
+                <input type="file" name="imagen" id="imagen" accept=".png, .jpg, .jpeg">
+                
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion" id="descripcion" placeholder="Introduce una descripción">
+                
+                <label for="ingredientes">Ingredientes: </label>
+                <div id="container_ingrediente">
+                    <div>
+                        <input type="text" name="ingredientes[]" id="ingredeintes" required>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="cantidad[]" id="cantidad" min="0" max="999">
+                        <label for="unidad">Unidad:</label>
+                        <select name="unidad[]" id="unidad">
+                            <option value="mg">mg</option>
+                            <option value="g">g</option>
+                            <option value="ml">ml</option>
+                            <option value="l">l</option>
+                            <option value="cda.">cda.</option>
+                            <option value="cdta.">cdta.</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="button" value="Añadir ingrediente" onclick="añadirIngrediente()">
+                
+                <label for="pasos">Pasos:</label>
+                <div id="container_paso">
+                    <input type="text" name="pasos[]" id="pasos" placeholder="Introduce el paso" required>
+                </div>
+                <input type="button" value="Añadir paso" onclick="añadirPaso()">
+                
+                <label for="tiempo_preparacion">Tiempo de preparación (min):</label>
+                <input type="number" name="tiempo_preparacion" id="tiempo_preparacion" min="0" max="9999" required>
+                
+                <label for="tipo">Tipo:</label>
+                <select name="tipo" id="tipo">
+                    <option value="normal">Normal</option>
+                    <option value="vegetariana">Vegetariana</option>
+                    <option value="vegana">Vegana</option>
+                </select>
+                <input type="submit" value="Subir">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Contacto</p>
+            <div class="footer-links">
+                <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+                <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+                <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+            </div>
+            <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+        </div>
+    </footer>
+</body>
+</html>
