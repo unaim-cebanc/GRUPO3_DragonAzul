@@ -58,6 +58,21 @@ def subir_receta():
         return redirect(url_for("recetario"))
     return render_template("subir_receta.html", usuario = session.get("usuario")) 
 
+@app.route("/registro", methods = ['GET', 'POST'])
+def registro():
+    pass_error = False
+    if request.method == "POST":
+        usuario = request.form.get("nombre")
+        email = request.form.get("email")
+        psw = request.form.get("contrasena")
+        psw_check = request.form.get("contrasena_check")
+        if psw != psw_check:
+            pass_error = True
+            return render_template("registro.html", pass_error = pass_error)
+        else:
+            sql_scripts.register_user(usuario, email, psw)
+            return redirect(url_for("inicio_sesion"))
+    return render_template("registro.html")
 
 def main():
     app.run(debug=True)

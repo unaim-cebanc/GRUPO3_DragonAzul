@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import errorcode
+import bcrypt
 
 # Realiza la conexión con la base de datos
 def try_conn():
@@ -125,6 +126,28 @@ def insert_recepie(nombre, img, desc, ingredientes, cantidades, unidades, pasos,
     close_conn(CURSOR, CONEXION)
     print("datos insertados!")
 
+def register_user(nombre, email, contrasena):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+        INSERT INTO usuario (nombre, email, contrasena) VALUES (%s, %s, %s)
+    """
+    secure_psw = encrypt_password(contrasena)
+    values = (nombre, email, secure_psw)
+    
+    CURSOR.execute(query, values)
+    CONEXION.commit()
+    print("Usuario registrado!")
+    close_conn(CURSOR, CONEXION)
+
+def encrypt_password(psw):
+    salt = bcrypt.gensalt()
+    psw_hash = bcrypt.hashpw(psw.encode("utf-8"), salt)
+    return psw_hash
 
 if __name__ == "__main__":
-    print(get_user_id("unai"))
+    usuario = input("usuario: ")
+    psw = input("contraseña: ")
+    email = input("email: ")
+    register_user(usuario, email, psw)
