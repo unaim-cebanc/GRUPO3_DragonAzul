@@ -1,12 +1,11 @@
 import mysql.connector
 from mysql.connector import errorcode
 import bcrypt
-import bcrypt
 
 # Realiza la conexión con la base de datos
 def try_conn():
     try:
-        cnx = mysql.connector.connect(user='marta', password='marta1234', database='gastrolab')
+        cnx = mysql.connector.connect(user='unai', password='unai1234', database='gastrolab')
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Usuario o constraseña incorrectos!")
@@ -23,22 +22,24 @@ def try_conn():
 def close_conn(conexion, cursor):
     conexion.close()
     cursor.close()
-    return
 
 def validate_user(user, psw):
     CONEXION = try_conn()
     CURSOR = CONEXION.cursor()
     
-    query = "SELECT nombre, contrasena FROM usuario WHERE nombre = %s AND contrasena = %s"
-    values = (user, psw)
+    query = "SELECT nombre, contrasena FROM usuario WHERE nombre = %s"
+    values = (user,)
     
     CURSOR.execute(query, values)
-    result = CURSOR.fetchone()
+    usuario, contraseña = CURSOR.fetchone()
     close_conn(CONEXION, CURSOR)
     
-    if result is None:
+    enc_contaseña = contraseña.encode('utf-8')
+    
+    if decrypt_password(psw, enc_contaseña):
+        return True
+    else:
         return False
-    return True
 
 def is_admin(user):
     CONEXION = try_conn()
@@ -70,7 +71,6 @@ def get_user_id(user):
     
     if result is None:
         print("Usuario no encontrado!")
-        return
     return int(result[0])
 
 def fetch_recepies_info():
@@ -148,7 +148,7 @@ def encrypt_password(psw):
     return psw_hash
 
 def decrypt_password(psw, hash):
-    if bcrypt.checkpw(psw.encode("utf-8"),hash):
+    if bcrypt.checkpw(psw.encode("utf-8"), hash):
         return True
     else:
         return False

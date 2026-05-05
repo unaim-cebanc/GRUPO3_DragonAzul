@@ -74,6 +74,11 @@ def registro():
             return redirect(url_for("inicio_sesion"))
     return render_template("registro.html")
 
+@app.route("/cerrar_sesion")
+def cerrar_sesion():
+    session.pop("usuario")
+    return redirect(url_for("home"))
+
 def main():
     app.run(debug=True)
 
