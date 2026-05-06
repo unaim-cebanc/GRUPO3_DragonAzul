@@ -34,21 +34,21 @@
             {% if recetas %}
                 {% for r in recetas%}
                     <div class="card">
-                        <img src="{{r[1]}}" alt="Montaña al amanecer"/>
+                        <img src="{{r[2]}}" alt="alt"/>
                         <div class="card-body">
-                            <h2>{{r[0]}}</h2>
-                            {% if r[2] == 'normal' %}
+                            <h2>{{r[1]}}</h2>
+                            {% if r[3] == 'normal' %}
                                 <p>Vegetariano: No</p>
                                 <p>Vegano: No</p>
-                            {% elif r[2] == 'vegetariana' %}
+                            {% elif r[3] == 'vegetariana' %}
                                 <p>Vegetariano: Si</p>
                                 <p>Vegano: No</p>
                             {% else %}
                                 <p>Vegetariano: Si</p>
                                 <p>Vegano: Si</p>
                             {% endif %}
-                            <br>
-                            <p class="user_p">{{r[3]}}</p>
+                            <p class="user_p">{{r[4]}}</p>
+                            <a href="{{ url_for('receta', id=r[0]) }}">&#129034;</a>
                         </div>
                     </div>
                 {% endfor %}
