@@ -11,33 +11,33 @@
     <header>
         <img src="/static/images/logo.png" alt="logo.png">
         <p>mump.26</p>
+        <button onclick="toggleLang()" id="langBtn"> English </button>
     </header>
     <nav>
         <div class="nav_links">
-            <a href="/">INICIO</a>
-            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
-            <a href="/recetario">RECETARIO</a>
-            <a href="/integrantes">INTEGRANTES</a>
-
+            <a href="/" data-i18n="nav_inicio">INICIO</a>
+            <a href="/sobre_nosotros" data-i18n="nav_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario" data-i18n="nav_recetario">RECETARIO</a>
+            <a href="/integrantes" data-i18n="nav_integrantes">INTEGRANTES</a>
         </div>
         {%if session['usuario'] %}
             <div class="nav_sesion">
-                <a href="/cerrar_sesion">CERRAR SESIÓN</a>
+                <a href="/cerrar_sesion" data-i18n="nav_cerrar">CERRAR SESIÓN</a>
             </div>
         {%else%}
             <div class="nav_sesion">
-                <a href="/inicio_sesion">INICIAR SESIÓN</a>
+                <a href="/inicio_sesion" data-i18n="nav_iniciar">INICIAR SESIÓN</a>
             </div>
         {%endif%}
     </nav>
     <main>
-        <h1>PÁGINA PRINCIPAL</h1>
+        <h1 data-i18n="main_titulo">PÁGINA PRINCIPAL</h1>
         <section class="main_section">
             <img src="/static/images/foto2342.png" alt="foto2342.png">
-            <p>GastroLab es la plataforma digital del centro. Aquí encontrarás recetas, menús semanales y contenido exclusivo, todo en un solo lugar.</p>
+            <p data-i18n="main_desc1">GastroLab es la plataforma digital del centro. Aquí encontrarás recetas, menús semanales y contenido exclusivo, todo en un solo lugar.</p>
         </section>
         <section class="main_section2">
-            <p>La gastronomía también se digitaliza. En GastroLab encontrarás recetas, menús y contenido exclusivo del centro, todo organizado en un solo sitio. Porque perder una receta entre papeles ya es historia.</p>
+            <p data-i18n="main_desc2">La gastronomía también se digitaliza. En GastroLab encontrarás recetas, menús y contenido exclusivo del centro, todo organizado en un solo sitio. Porque perder una receta entre papeles ya es historia.</p>
         </section>
         {% if session["usuario"] %}
             <section>
@@ -45,17 +45,61 @@
             </section>    
         {% endif %}
     </main>
-<footer>
-<div class="footer-content">
-    <p class="footer-title">Contacto</p>
-    <div class="footer-links">
-        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
-        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
-        <a href="https://github.com/unaim-cebanc/GRUPO3_DragonAzul
-" target="_blank">💻 Our GitHub</a>
-    </div>
-    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
-</div>
-</footer>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title" data-i18n="footer_contacto">Contacto</p>
+            <div class="footer-links">
+                <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+                <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+                <a href="https://github.com/unaim-cebanc/GRUPO3_DragonAzul" target="_blank">💻 Our GitHub</a>
+            </div>
+            <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+        </div>
+    </footer>
+
+    <script>
+    let currentLang = 'es';
+
+    const translations = {
+      es: {
+        nav_inicio: "INICIO",
+        nav_nosotros: "SOBRE NOSOTROS",
+        nav_recetario: "RECETARIO",
+        nav_integrantes: "INTEGRANTES",
+        nav_cerrar: "CERRAR SESIÓN",
+        nav_iniciar: "INICIAR SESIÓN",
+        main_titulo: "PÁGINA PRINCIPAL",
+        main_desc1: "GastroLab es la plataforma digital del centro. Aquí encontrarás recetas, menús semanales y contenido exclusivo, todo en un solo lugar.",
+        main_desc2: "La gastronomía también se digitaliza. En GastroLab encontrarás recetas, menús y contenido exclusivo del centro, todo organizado en un solo sitio. Porque perder una receta entre papeles ya es historia.",
+        footer_contacto: "Contacto"
+      },
+      en: {
+        nav_inicio: "HOME",
+        nav_nosotros: "ABOUT US",
+        nav_recetario: "RECIPE BOOK",
+        nav_integrantes: "MEMBERS",
+        nav_cerrar: "LOG OUT",
+        nav_iniciar: "LOG IN",
+        main_titulo: "MAIN PAGE",
+        main_desc1: "GastroLab is the culinary center's digital platform. Here you'll find recipes, weekly menus and exclusive content, all in one place.",
+        main_desc2: "Gastronomy goes digital. On GastroLab you'll find recipes, menus and exclusive content from the center, all organized in one place. Because losing a recipe in a pile of papers is history.",
+        footer_contacto: "Contact"
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      const isEn = currentLang === 'en';
+
+      document.getElementById('langBtn').textContent = isEn ? ' Español' : ' English';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+    }
+    </script>
 </body>
 </html>
