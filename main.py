@@ -79,6 +79,13 @@ def cerrar_sesion():
     session.pop("usuario")
     return redirect(url_for("home"))
 
+@app.route("/receta/<int:id>")
+def receta(id):
+    datos = sql_scripts.get_recepie(id)
+    pasos = sql_scripts.get_pasos(id)
+    ingredientes = sql_scripts.get_ingredientes(id)
+    return render_template("receta.html", datos = datos, pasos = pasos, ingredientes = ingredientes)
+
 def main():
     app.run(debug=True)
 

@@ -78,7 +78,7 @@ def fetch_recepies_info():
     CURSOR = CONEXION.cursor()
     
     query = """
-    SELECT r.nombre, r.imagen, r.tipo, u.nombre
+    SELECT r.id_receta, r.nombre, r.imagen, r.tipo, u.nombre
     FROM receta r INNER JOIN usuario u ON r.id_usuario = u.id_usuario
     """
     CURSOR.execute(query)
@@ -153,6 +153,50 @@ def decrypt_password(psw, hash):
     else:
         return False
     
+
+def get_recepie(id):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+    SELECT * FROM receta WHERE id_receta = %s
+    """
+    values = (id,)
+    CURSOR.execute(query, values)
+    datos_receta = CURSOR.fetchone()
+    
+    close_conn(CURSOR, CONEXION)
+    return datos_receta
+
+def get_pasos(id):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+    SELECT * FROM pasos WHERE id_receta = %s
+    """
+    values = (id,)
+    
+    CURSOR.execute(query, values)
+    pasos_receta = CURSOR.fetchall()
+    
+    close_conn(CURSOR, CONEXION)
+    return pasos_receta
+
+def get_ingredientes(id):
+    CONEXION = try_conn()
+    CURSOR = CONEXION.cursor()
+    
+    query = """
+    SELECT nombre, cantidad, unidad FROM receta_ingrediente WHERE id_receta = %s
+    """
+    values = (id,)
+    
+    CURSOR.execute(query, values)
+    ingredientes_receta = CURSOR.fetchall()
+    
+    close_conn(CURSOR, CONEXION)
+    return ingredientes_receta
 
 if __name__ == "__main__":
     usuario = input("usuario: ")
