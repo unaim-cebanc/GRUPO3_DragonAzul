@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `gastrolab` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `gastrolab`;
--- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
 -- Host: localhost    Database: gastrolab
 -- ------------------------------------------------------
--- Server version	8.0.44
+-- Server version	8.0.45
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -51,9 +51,9 @@ DROP TABLE IF EXISTS `menu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu` (
   `id_menu` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date DEFAULT NULL,
-  `tipo` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_menu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,7 +163,7 @@ CREATE TABLE `pasos` (
   PRIMARY KEY (`id_paso`),
   KEY `fk_pasos_01` (`id_receta`),
   CONSTRAINT `fk_pasos_01` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `pasos` (
 
 LOCK TABLES `pasos` WRITE;
 /*!40000 ALTER TABLE `pasos` DISABLE KEYS */;
-INSERT INTO `pasos` VALUES (1,1,'paso1'),(2,1,'paso2'),(3,2,'paso1'),(4,2,'paso2');
+INSERT INTO `pasos` VALUES (1,1,'Cocina los fideos de arroz según las instrucciones del paquete y resérvalos.'),(2,1,'En una sartén grande o wok, calienta el aceite y saltea el ajo durante 1 minuto.'),(3,1,'Añade el tofu y dóralo ligeramente.'),(4,1,'Incorpora la zanahoria y el pimiento, y cocina durante 3-4 minutos.'),(5,1,'Agrega los fideos cocidos.'),(6,1,'Mezcla la salsa de soja, el tamarindo y el sirope, y vierte sobre los fideos.'),(7,1,'Remueve bien para que todo se impregne del sabor.'),(8,1,'Añade los brotes de soja y cocina 2 minutos más.'),(9,1,'Sirve caliente con cacahuetes, cilantro y un chorrito de lima.'),(10,2,'Desmenuza el tofu con un tenedor.'),(11,2,'Saltea la cebolla y el pimiento en una sartén.'),(12,2,'Añade el tofu y la cúrcuma.'),(13,2,'Remueve bien durante 5-7 minutos.'),(14,2,'Salpimenta y añade espinacas al final.'),(15,2,'Sirve caliente con pan o tostadas.'),(16,3,'Pocha la cebolla y el ajo en aceite de oliva.'),(17,3,'Añade una cucharada de harina (opcional) y remueve.'),(18,3,'Incorpora el vino blanco y el caldo de pescado.'),(19,3,'Añade los guisantes y cocina unos minutos.'),(20,3,'Coloca la merluza en la salsa y cocina 8-10 minutos.'),(21,3,'Agrega los huevos cocidos en cuartos.'),(22,3,'Espolvorea perejil fresco y sirve caliente.'),(23,4,'Forma las albóndigas con la carne, huevo, ajo, sal y pimienta.'),(24,4,'Dóralas ligeramente en una sartén y resérvalas.'),(25,4,'En la misma olla, sofríe cebolla, zanahoria y champiñones.'),(26,4,'Añade una cucharada de harina y remueve.'),(27,4,'Incorpora el caldo y cocina la salsa 10 minutos.'),(28,4,'Añade las albóndigas y cocina a fuego medio 20-25 minutos.'),(29,4,'Agrega la nata al final y mezcla suavemente.'),(30,4,'Decora con perejil y sirve caliente.'),(31,5,'Pica los chipirones y la cebolla muy finos.'),(32,5,'Sofríe la cebolla y añade los chipirones hasta que suelten el agua.'),(33,5,'Añade la mantequilla y la harina, removiendo para formar un roux.'),(34,5,'Incorpora la leche poco a poco sin dejar de remover.'),(35,5,'Cocina hasta obtener una masa espesa y cremosa.'),(36,5,'Deja enfriar la masa (mínimo 2 horas en nevera).'),(37,5,'Forma las croquetas, pásalas por harina, huevo y pan rallado.'),(38,5,'Fríe en aceite caliente hasta dorar.'),(39,6,'Pica la cebolla y las verduras en trozos pequeños.'),(40,6,'Sofríe la cebolla en aceite o mantequilla.'),(41,6,'Añade las verduras y cocina unos minutos.'),(42,6,'Incorpora el arroz y rehógalo ligeramente.'),(43,6,'Añade un chorrito de vino blanco (opcional).'),(44,6,'Ve agregando caldo caliente poco a poco mientras remueves.'),(45,6,'Cocina durante 18-20 minutos hasta que el arroz esté cremoso.'),(46,6,'Añade queso parmesano al final (opcional) y mezcla.');
 /*!40000 ALTER TABLE `pasos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +232,7 @@ CREATE TABLE `receta` (
 
 LOCK TABLES `receta` WRITE;
 /*!40000 ALTER TABLE `receta` DISABLE KEYS */;
-INSERT INTO `receta` VALUES (1,'Pad Thai','vegan-pad-thai-11-1.jpg','desc',35,'vegetariana',1,'2026-05-04 22:37:58'),(2,'Revuelto Vegano de Tofu','1366_2000.jpg','desc',15,'vegana',1,'2026-05-04 22:38:49'),(3,'Merluza a la vasca','1366_2000.jpeg','desc',40,'normal',1,'2026-05-05 10:57:18'),(4,'Blanqueta de albondigas','2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg','desc',60,'normal',1,'2026-05-05 10:58:31'),(5,'Croquetas de chipirones','croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp','desc',90,'normal',1,'2026-05-05 10:59:33'),(6,'Risotto de verduras','risotto-de-verduras.jpg','desc',40,'normal',1,'2026-05-05 11:00:30');
+INSERT INTO `receta` VALUES (1,'Pad Thai','static/images/vegan-pad-thai-11-1.jpg','Salteado de fideos de arroz cocinados a fuego alto en un wok con una salsa característica a base de tamarindo. Aunque hoy se considera el plato nacional de Tailandia, fue popularizado en los años 40 por el gobierno tailandés como parte de una campaña de identidad nacional para reducir el consumo de arroz durante la escasez de la Segunda Guerra Mundial.',35,'vegetariana',1,'2026-05-04 22:37:58'),(2,'Revuelto Vegano de Tofu','static/images/1366_2000.jpg','Un desayuno o cena saludable, rápido y proteico. El tofu sustituye al huevo con especias que le dan un sabor increíble.',15,'vegana',1,'2026-05-04 22:38:49'),(3,'Merluza a la vasca','static/images/1366_2000.jpeg','Un clásico de la cocina vasca: merluza suave en salsa verde con guisantes, espárragos y huevo cocido.',40,'normal',1,'2026-05-05 10:57:18'),(4,'Blanqueta de albondigas','static/images/2024_10_14T11_38_48_badun_images.badun.es_blanqueta_de_albondigas_b9a3_1290_742.jpg','Un guiso tradicional cremoso con albóndigas en salsa blanca suave, cebolla, zanahoria y champiñones.',60,'normal',1,'2026-05-05 10:58:31'),(5,'Croquetas de chipirones','static/images/croquetas-de-chipirones-en-su-tinta_00000000_251113102407_1200x1200.webp','Cremosas por dentro y crujientes por fuera, estas croquetas de chipirones tienen un sabor intenso a mar, típicas de la cocina española.',90,'normal',1,'2026-05-05 10:59:33'),(6,'Risotto de verduras','static/images/risotto-de-verduras.jpg','Un plato italiano cremoso y reconfortante, elaborado con arroz y verduras frescas, ideal como comida principal.',40,'normal',1,'2026-05-05 11:00:30');
 /*!40000 ALTER TABLE `receta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,12 +247,12 @@ CREATE TABLE `receta_ingrediente` (
   `id_ingrediente` int NOT NULL AUTO_INCREMENT,
   `id_receta` int NOT NULL,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cantidad` decimal(8,2) DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
   `unidad` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_ingrediente`,`id_receta`),
   KEY `fk_receta_ingredientes_01` (`id_receta`),
   CONSTRAINT `fk_receta_ingredientes_01` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +261,7 @@ CREATE TABLE `receta_ingrediente` (
 
 LOCK TABLES `receta_ingrediente` WRITE;
 /*!40000 ALTER TABLE `receta_ingrediente` DISABLE KEYS */;
-INSERT INTO `receta_ingrediente` VALUES (1,1,'ingrediente1',1.00,'mg'),(2,1,'ingrediente2',2.00,'mg'),(3,1,'ingrediente3',3.00,'mg'),(4,2,'ingrediente1',1.00,'mg'),(5,2,'ingrediente2',2.00,'mg');
+INSERT INTO `receta_ingrediente` VALUES (1,1,'Fideos de arroz',150,'g'),(2,1,'Zanahoria',1,NULL),(3,1,'Pimiento rojo',100,'g'),(4,1,'Salsa de soja',NULL,NULL),(5,1,'Pasta de tamarindo',NULL,NULL),(6,2,'Tofu firme',200,'g'),(7,2,'Cebolla picada',1,NULL),(8,2,'Pimiento rojo',1,NULL),(9,2,'Cúrcuma',1,'cdta.'),(10,2,'Aceite de oliva',1,'cda.'),(11,2,'Sal y pimienta',NULL,NULL),(12,2,'Levadura nutricional (opcional)',NULL,NULL),(13,2,'Espinacas frescas (opcional)',NULL,NULL),(14,3,'Rodajas de merluza',4,NULL),(15,3,'Dientes de ajo',2,NULL),(16,3,'Cebolla',1,NULL),(17,3,'Guisantes',100,'g'),(18,3,'Huevos cocidos',2,NULL),(19,3,'Vaso de caldo de pescado',1,NULL),(20,3,'Vino blanco (opcional)',NULL,NULL),(21,3,'Perejil fresco',NULL,NULL),(22,3,'Aceite de oliva',NULL,NULL),(23,3,'Sal y pimienta',NULL,NULL),(24,4,'Carne picada (ternera o mixta)',500,'g'),(25,4,'Huevo',1,NULL),(26,4,'Dientes de ajo',2,NULL),(27,4,'Cebolla',1,NULL),(28,4,'Zanahorias',2,NULL),(29,4,'Champiñones',150,NULL),(30,4,'Nata para cocinar',200,'ml'),(31,4,'Caldo de Carne',500,'ml'),(32,4,'Harina (para espesar)',NULL,NULL),(33,4,'Aceite de oliva',NULL,NULL),(34,4,'Sal y pimienta',NULL,NULL),(35,4,'Perejil fresco',NULL,NULL),(36,5,'Chipirones limpios',300,'g'),(37,5,'Cebolla',1,NULL),(38,5,'Mantequilla',2,'cda.'),(39,5,'Harina',2,'cda.'),(40,5,'Leche',500,'ml'),(41,5,'Aceite de oliva',NULL,NULL),(42,5,'Sal y pimienta',NULL,NULL),(43,5,'Nuez moscada (opcional)',NULL,NULL),(44,5,'Harina, huevo y pan rallado',NULL,NULL),(45,6,'Arroz arborio',200,'g'),(46,6,'Cebolla',1,NULL),(47,6,'Calabacín',1,NULL),(48,6,'Zanahoria',1,NULL),(49,6,'Champiñones',100,'g'),(50,6,'Caldo de verduras',750,'ml'),(51,6,'Queso parmesano (opcional)',50,'g'),(52,6,'Cucharada de mantequilla',1,'cda.'),(53,6,'Vino blanco (opcional)',NULL,NULL),(54,6,'Sal y pimienta',NULL,NULL);
 /*!40000 ALTER TABLE `receta_ingrediente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +307,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`),
   KEY `id_rol` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,7 +316,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'prueba','prueba@prueba.com','12345',1,'9999-01-01 00:00:00'),(2,'prueba2','prueba2@prueba.com','1234',0,'9999-01-01 00:00:00'),(3,'unai','unai@prueba.com','prueba123',0,'2026-05-05 09:04:30');
+INSERT INTO `usuario` VALUES (1,'unai','unai@gmail.com','$2b$12$tYkFW1MGk9b.HJ73EJ113uOYxHUOB53NyWvqrBNOFNI8cWGnEhyeW',0,'2026-05-05 21:11:27');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,10 +451,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `media_puntuacion`,
  1 AS `total_votos`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Dumping events for database 'gastrolab'
---
 
 --
 -- Dumping routines for database 'gastrolab'
@@ -764,4 +760,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-05 11:08:58
+-- Dump completed on 2026-05-06 10:14:27

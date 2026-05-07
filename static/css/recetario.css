@@ -55,7 +55,7 @@ main button:disabled {
 .main_section {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2.5rem;
     align-items: center;
     margin-bottom: 2.5rem;
@@ -73,10 +73,9 @@ main button:disabled {
     width: 100%;
     width: 100%;
     border: 1px solid var(--border);
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: row;
 }
 
 .card:hover {
@@ -85,15 +84,18 @@ main button:disabled {
 }
 
 .card img {
-    width: 100%;
-    height: 175px;
+    width: 300px;
+    height: 100%;
+    max-height: 200px;
     object-fit: cover;
     display: block;
-    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
 }
 
 .card-body {
     padding: 1.25rem;
+    flex: 1;
 }
 
 .card-body h2 {
@@ -108,14 +110,14 @@ main button:disabled {
     font-size: 10px;
     color: var(--text);
     line-height: 1.7;
-    margin: 0 0 0.75rem;
 }
 
 .user_p {
     border: 1px solid var(--border);
     border-radius: 10px;
     width: fit-content;
-    padding: 5px;
+    padding: 3px 8px;
+    margin-top: 1rem;
     align-items: center;
 }
 
@@ -137,4 +139,15 @@ main button:disabled {
     font-family: "Plus Jakarta Sans", sans-serif;
     color: var(--gold);
     font-style: italic;
+}
+
+.card-body a{
+    margin-left: 36rem;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
