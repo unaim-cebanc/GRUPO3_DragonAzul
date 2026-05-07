@@ -1,3 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap");
+
+:root {
+    --bg: #060d1a;
+    --surface: #0e1c30;
+    --border: rgba(58, 159, 255, 0.15);
+    --blue: #3a9fff;
+    --gold: #d4a843;
+    --text: #e8f0ff;
+    --muted: #607a99;
+    --input_hover: #060d1ad6;
+    --input_border_hover: #607a99a6;
+}
+
 section {
     gap: 2.5rem;
     align-items: center;
@@ -6,4 +20,214 @@ section {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--gold);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    padding: 2rem;
+}
+
+section form{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+.seccion_titulo {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    display: block;
+}
+
+.seccion_titulo input {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.seccion_imagen {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    display: block;
+}
+
+.seccion_imagen input {
+    display: block;
+    margin-top: 10px;
+}
+
+.seccion_desc {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    display: block;
+}
+
+textarea {
+    margin-top: 10px;
+    width: 100%;
+    resize: vertical;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border: 2px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    outline: none;
+    background-color: var(--surface);
+    padding: 1rem;
+}
+
+.seccion_ingrediente {
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.seccion_ingrediente input {
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+input[type="number"],
+select {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: var(--surface);
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    padding: 0.5rem;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="number"]:hover,
+select:hover {
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    outline: none;
+}
+
+.seccion_ingrediente .inner_label {
+    padding-right: 10px;
+    font-size: 15px;
+}
+
+.seccion_pasos {
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.seccion_pasos input {
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.seccion_pasos input[type="text"] {
+    width: 100%;
+}
+
+.seccion_tiempo {
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.seccion_tiempo input {
+    display: block;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.seccion_tipo {
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    display: block;
+}
+
+.seccion_tipo select {
+    display: block;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+label{
+    font-size: 25px;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+input[type="text"] {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    background-color: var(--surface);
+    font-size: 14px;
+    padding: 14px 12px;
+    max-width: 320px;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="text"]:hover {
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    outline: none;
+}
+
+input[type="text"]:focus {
+    background-color: var(--bg);
+    border-color: var(--muted);
+    outline: none;
+}
+
+input[type="submit"] {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gold);
+    padding: 10px 12px;
+    border: 3px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    transition: all 250ms ease-in-out;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    color: var(--text)
+}
+
+input[type="button"] {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    background-color: var(--surface);
+    color: var(--gold);
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    color: var(--text)
 }

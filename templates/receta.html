@@ -9,14 +9,20 @@
 </head>
 <body>
     <header>
-        <img src="/static/images/logo.png" alt="logo.png">
-        <p>mump.26</p>
-    </header>
+        <div class="header_content">
+            <img src="/static/images/logo.png" alt="logo.png">
+            <p>mump.26</p>
+        </div>
+        <div class="header_translate">
+            <button onclick="toggleLang()" id="langBtn"> English </button>
+        </div>
+        </header>
     <nav>
         <div class="nav_links">
             <a href="/">INICIO</a>
             <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
             <a href="/recetario">RECETARIO</a>
+            <a href="/integrantes">INTEGRANTES</a>
         </div>
         {%if session['usuario'] %}
             <div class="nav_sesion">

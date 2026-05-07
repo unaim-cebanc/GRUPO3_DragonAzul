@@ -8,21 +8,31 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-
     <header>
-        <img src="/static/images/logo.png" alt="logo.png">
-        <p>mump.26</p>
-    </header>
+        <div class="header_content">
+            <img src="/static/images/logo.png" alt="logo.png">
+            <p>mump.26</p>
+        </div>
+        <div class="header_translate">
+            <button onclick="toggleLang()" id="langBtn"> English </button>
+        </div>
+        </header>
     <nav>
         <div class="nav_links">
-            <a href="/">INICIO</a>
-            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
-            <a href="/recetario">RECETARIO</a>
-            <a href="/integrantes">INTEGRANTES</a>
+            <a href="/" data-i18n="nav_inicio">INICIO</a>
+            <a href="/sobre_nosotros" data-i18n="nav_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario" data-i18n="nav_recetario">RECETARIO</a>
+            <a href="/integrantes" data-i18n="nav_integrantes">INTEGRANTES</a>
         </div>
-        <div class="nav_sesion">
-            <a href="/inicio_sesion">INICIAR SESIÓN</a>
-        </div>
+        {%if session['usuario'] %}
+            <div class="nav_sesion">
+                <a href="/cerrar_sesion" data-i18n="nav_cerrar">CERRAR SESIÓN</a>
+            </div>
+        {%else%}
+            <div class="nav_sesion">
+                <a href="/inicio_sesion" data-i18n="nav_iniciar">INICIAR SESIÓN</a>
+            </div>
+        {%endif%}
     </nav>
     </html><section class="team-section">
     <h1>El Equipo</h1>
