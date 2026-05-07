@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap");
-
+/* Marko */
 :root {
     --bg: #060d1a;
     --surface: #0e1c30;
@@ -14,11 +14,11 @@
 }
 
 main {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
     padding: 2rem;
     position: relative;
 }
@@ -45,7 +45,7 @@ main button:hover:not(:disabled) {
     cursor: pointer;
     background-color: var(--input_hover);
     border-color: var(--input_border_hover);
-    color: var(--text)
+    color: var(--text);
 }
 
 main button:disabled {
@@ -55,7 +55,7 @@ main button:disabled {
 .main_section {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
     align-items: center;
     margin-bottom: 2.5rem;
@@ -71,11 +71,11 @@ main button:disabled {
     border-radius: 12px;
     overflow: hidden;
     width: 100%;
-    width: 100%;
     border: 1px solid var(--border);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: row;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -84,18 +84,15 @@ main button:disabled {
 }
 
 .card img {
-    width: 300px;
-    height: 100%;
-    max-height: 200px;
+    width: 100%;
+    height: 175px;
     object-fit: cover;
     display: block;
-    border-right: 1px solid var(--border);
-    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
 }
 
 .card-body {
     padding: 1.25rem;
-    flex: 1;
 }
 
 .card-body h2 {
@@ -110,14 +107,14 @@ main button:disabled {
     font-size: 10px;
     color: var(--text);
     line-height: 1.7;
+    margin: 0 0 0.75rem;
 }
 
 .user_p {
     border: 1px solid var(--border);
     border-radius: 10px;
     width: fit-content;
-    padding: 3px 8px;
-    margin-top: 1rem;
+    padding: 5px;
     align-items: center;
 }
 
@@ -141,13 +138,175 @@ main button:disabled {
     font-style: italic;
 }
 
-.card-body a{
-    margin-left: 36rem;
-    font-size: 20px;
-    text-decoration: none;
+/* ── IA ── */
+
+.ia_section {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 2.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.ia_titulo {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin: 0 0 0.3rem;
+}
+
+.ia_sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    margin: 0 0 1.5rem;
+}
+
+.ia_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ia_field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ia_field label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.ia_field input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
     color: var(--text);
-    border: 2px solid var(--border);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+}
+
+.ia_field input::placeholder { color: var(--muted); }
+.ia_field input:hover { background: var(--input_hover); border-color: var(--input_border_hover); }
+.ia_field input:focus { border-color: var(--blue); }
+
+.ns_group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.ns_pill {
+    padding: 7px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
     cursor: pointer;
-    border-radius: 5px;
-    padding: 5px 10px;
+    transition: all 0.2s ease;
+}
+
+.ns_pill:hover { border-color: var(--input_border_hover); color: var(--text); }
+.ns_pill.active { border-color: var(--gold); color: var(--gold); background: transparent; }
+
+.ia_btn {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    background-color: var(--surface);
+    color: var(--gold);
+    padding: 10px 22px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.5rem;
+    position: static;
+    width: max-content;
+}
+
+.ia_btn:hover:not(:disabled) {
+    background-color: var(--input_hover);
+    border-color: var(--input_border_hover);
+    color: var(--text);
+}
+
+.ia_btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ia_spinner {
+    display: none;
+    width: 13px;
+    height: 13px;
+    border: 2px solid rgba(212, 168, 67, 0.3);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: ia_spin 0.7s linear infinite;
+}
+
+@keyframes ia_spin { to { transform: rotate(360deg); } }
+
+.ia_result {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ia_result:empty { display: none; }
+
+.ia_result_head {
+    padding: 8px 14px;
+    background: rgba(58, 159, 255, 0.06);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ia_dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.ia_tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.ia_result_body {
+    padding: 1.25rem;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+    font-weight: 300;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 480px) {
+    .ia_row { grid-template-columns: 1fr; }
 }
