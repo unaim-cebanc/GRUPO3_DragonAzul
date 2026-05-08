@@ -9,19 +9,30 @@
 </head>
 <body>
     <header>
-        <img src="/static/images/logo.png" alt="logo.png">
-        <p>mump.26</p>
-    </header>
+        <div class="header_content">
+            <img src="/static/images/logo.png" alt="logo.png">
+            <p>mump.26</p>
+        </div>
+        <div class="header_translate">
+            <button onclick="toggleLang()" id="langBtn"> English </button>
+        </div>
+        </header>
     <nav>
         <div class="nav_links">
-            <a href="/">INICIO</a>
-            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
-            <a href="/recetario">RECETARIO</a>
-            <a href="/integrantes">INTEGRANTES</a>
+            <a href="/" data-i18n="nav_inicio">INICIO</a>
+            <a href="/sobre_nosotros" data-i18n="nav_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario" data-i18n="nav_recetario">RECETARIO</a>
+            <a href="/integrantes" data-i18n="nav_integrantes">INTEGRANTES</a>
         </div>
-        <div class="nav_sesion">
-            <a href="/inicio_sesion">INICIAR SESION</a>
-        </div>
+        {%if session['usuario'] %}
+            <div class="nav_sesion">
+                <a href="/cerrar_sesion" data-i18n="nav_cerrar">CERRAR SESIÓN</a>
+            </div>
+        {%else%}
+            <div class="nav_sesion">
+                <a href="/inicio_sesion" data-i18n="nav_iniciar">INICIAR SESIÓN</a>
+            </div>
+        {%endif%}
     </nav>
     <main>
         <div>
@@ -36,21 +47,21 @@
             {% if recetas %}
                 {% for r in recetas %}
                     <div class="card">
-                        <img src="{{r[1]}}" alt="Montaña al amanecer"/>
+                        <img src="{{r[2]}}" alt="alt"/>
                         <div class="card-body">
-                            <h2>{{r[0]}}</h2>
-                            {% if r[2] == 'normal' %}
+                            <h2>{{r[1]}}</h2>
+                            {% if r[3] == 'normal' %}
                                 <p>Vegetariano: No</p>
                                 <p>Vegano: No</p>
-                            {% elif r[2] == 'vegetariana' %}
+                            {% elif r[3] == 'vegetariana' %}
                                 <p>Vegetariano: Si</p>
                                 <p>Vegano: No</p>
                             {% else %}
                                 <p>Vegetariano: Si</p>
                                 <p>Vegano: Si</p>
                             {% endif %}
-                            <br>
-                            <p class="user_p">{{r[3]}}</p>
+                            <p class="user_p">{{r[4]}}</p>
+                            <a href="{{ url_for('receta', id=r[0]) }}">&#129034;</a>
                         </div>
                     </div>
                 {% endfor %}

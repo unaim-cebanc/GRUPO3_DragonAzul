@@ -1,0 +1,16 @@
+# Le indica a la herramienta de cobertura qué carpetas 
+# debe analizar (solo el código de producción) y cuáles ignorar.
+
+# proyecto/.coveragerc
+
+[run]
+source = src/
+omit = 
+    tests/*
+    venv/*
+
+[report]
+# Ignorar líneas que no necesitan ser probadas
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:

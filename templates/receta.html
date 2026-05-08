@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/receta.css')}}">
+    <title>{{datos[1]}}</title>
+</head>
+<body>
+    <header>
+        <div class="header_content">
+            <img src="/static/images/logo.png" alt="logo.png">
+            <p>mump.26</p>
+        </div>
+        <div class="header_translate">
+            <button onclick="toggleLang()" id="langBtn"> English </button>
+        </div>
+        </header>
+    <nav>
+        <div class="nav_links">
+            <a href="/">INICIO</a>
+            <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
+            <a href="/recetario">RECETARIO</a>
+            <a href="/integrantes">INTEGRANTES</a>
+        </div>
+        {%if session['usuario'] %}
+            <div class="nav_sesion">
+                <a href="/cerrar_sesion">CERRAR SESIÓN</a>
+            </div>
+        {%else%}
+            <div class="nav_sesion">
+                <a href="/inicio_sesion">INICIAR SESIÓN</a>
+            </div>
+        {%endif%}
+    </nav>
+    <main>
+        <section class="main_section">
+            <div class="img_container">
+                <img src="{{url_for('static', filename=datos[2].replace('static/', ''))}}" alt="imagen">
+                <div><h1>{{datos[1]}}</h1></div>
+            </div>
+            <div>
+                <h2>Descripcion</h2>
+                <p>{{datos[3]}}</p>
+            </div>
+            <div>
+                <h2>Ingredientes</h2>
+                <div class="ul_container">
+                    <ul>
+                        {% for ingrediente in ingredientes %}
+                            <li>
+                                {% if ingrediente[1] %}{{ingrediente[1] | int }}{% endif%}
+                                {% if ingrediente[2] %}{{ingrediente[2]}}{% endif %}
+                                {{ingrediente[0]}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h2>Pasos</h2>
+                <p>Tiempo de preparación: {{datos[4]}}min</p>
+                {% set contador = namespace(value=1)%}
+                {% for paso in pasos %}
+                    <br>
+                    <p><strong>{{contador.value}}</strong> {{paso[2]}}</p>
+                    {% set contador.value = contador.value + 1 %}
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Contacto</p>
+            <div class="footer-links">
+                <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+                <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+                <a href="https://github.com/dragonazul" target="_blank">💻 Our GitHub</a>
+            </div>
+            <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+        </div>
+    </footer>
+</body>
+</html>

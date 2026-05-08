@@ -85,7 +85,8 @@ form .error_msg {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     border: 2px solid var(--border);
     border-radius: 6px;
     color: var(--text);
@@ -98,14 +99,16 @@ input[type="password"] {
 }
 
 input[type="text"]:hover,
-input[type="password"]:hover {
+input[type="password"]:hover,
+input[type="email"]:hover {
     background-color: var(--input_hover);
     border-color: var(--input_border_hover);
     outline: none;
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="email"]:focus {
     background-color: var(--bg);
     border-color: var(--muted);
     outline: none;

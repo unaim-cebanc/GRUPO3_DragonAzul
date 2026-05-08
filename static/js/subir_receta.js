@@ -13,16 +13,16 @@ function añadirIngrediente() {
                 <option value="l">l</option>
                 <option value="cda.">cda.</option>
                 <option value="cdta.">cdta.</option>
+                <option value="none" selected></option>
             </select>`;
     body.appendChild(div);
 }
 
 function añadirPaso() {
     var body = document.getElementById("container_paso");
-    var input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'pasos[]';
-    input.placeholder = 'Introduce el paso';
-    input.required = true;
-    body.appendChild(input);
+    var textarea = document.createElement('textarea');
+    textarea.name = 'pasos[]';
+    textarea.placeholder = 'Introduce el paso';
+    textarea.required = true;
+    body.appendChild(textarea);
 }

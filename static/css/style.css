@@ -8,6 +8,8 @@
     --gold: #d4a843;
     --text: #e8f0ff;
     --muted: #607a99;
+    --input_hover: #060d1ad6;
+    --input_border_hover: #607a99a6;
 }
 
 * {
@@ -30,7 +32,7 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
     padding: 1.1rem;
     background: var(--surface);
     border-bottom: 1px solid var(--border-gold, rgba(212, 168, 67, 0.3));
@@ -42,8 +44,8 @@ header {
 }
 
 header img {
-    height: 2.5%;
-    width: 2.5%;
+    height: 6%;
+    width: 6%;
     margin-left: 15px;
 }
 
@@ -53,6 +55,32 @@ header p {
     margin-left: 10px;
 }
 
+.header_content {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.header_translate {
+    margin-right: 20px;
+}
+
+.header_translate button {
+    border: 2px solid var(--border);
+    background-color: var(--surface);
+    color: var(--text);
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.header_translate button:hover {
+    border-color: var(--input_border_hover);
+    background-color: var(--input_hover);
+}
 /* ── NAV ── */
 nav {
     display: flex;
