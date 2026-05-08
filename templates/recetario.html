@@ -18,7 +18,6 @@
             <a href="/sobre_nosotros">SOBRE NOSOTROS</a>
             <a href="/recetario">RECETARIO</a>
             <a href="/integrantes">INTEGRANTES</a>
-
         </div>
         <div class="nav_sesion">
             <a href="/inicio_sesion">INICIAR SESION</a>
@@ -32,9 +31,10 @@
                 <button disabled>Subir Receta +</button>
             {% endif %}
         </div>
+
         <section class="main_section">
             {% if recetas %}
-                {% for r in recetas%}
+                {% for r in recetas %}
                     <div class="card">
                         <img src="{{r[1]}}" alt="Montaña al amanecer"/>
                         <div class="card-body">
@@ -61,17 +61,108 @@
                 </div>
             {% endif %}
         </section>
+
+        <section class="ia_section">
+            <h2 class="ia_titulo">Sugeridor de Recetas IA</h2>
+            <p class="ia_sub">Introduce un ingrediente y su Nutriscore para obtener una receta saludable.</p>
+
+            <div class="ia_row">
+                <div class="ia_field">
+                    <label for="ingrediente">Ingrediente</label>
+                    <input id="ingrediente" type="text" placeholder="Ej: brócoli, salmón…"
+                           onkeydown="if(event.key==='Enter') generarReceta()">
+                </div>
+                <div class="ia_field">
+                    <label>Nutriscore</label>
+                    <div class="ns_group">
+                        <div class="ns_pill active" data-val="A">A</div>
+                        <div class="ns_pill" data-val="B">B</div>
+                        <div class="ns_pill" data-val="C">C</div>
+                        <div class="ns_pill" data-val="D">D</div>
+                        <div class="ns_pill" data-val="E">E</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="ia_btn" id="ia_btn" onclick="generarReceta()">
+                <span class="ia_spinner" id="ia_spinner"></span>
+                <span id="ia_btn_label">Generar receta</span>
+            </button>
+
+            <div class="ia_result" id="ia_result"></div>
+        </section>
     </main>
-<footer>
-<div class="footer-content">
-    <p class="footer-title">Contacto</p>
-    <div class="footer-links">
-        <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
-        <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
-        <a href="https://github.com/unaim-cebanc/GRUPO3_DragonAzul" target="_blank">💻 Our GitHub</a>
-    </div>
-    <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
-</div>
-</footer>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Contacto</p>
+            <div class="footer-links">
+                <a href="mailto:gastrolab@gmail.com">📧 dragonazul@gmail.com</a>
+                <a href="https://instagram.com/gastrolab" target="_blank">📸 @mump.26</a>
+                <a href="https://github.com/unaim-cebanc/GRUPO3_DragonAzul" target="_blank">💻 Our GitHub</a>
+            </div>
+            <p class="footer-copy">© 2026 GastroLab · Dragon Azul</p>
+        </div>
+    </footer>
+
+    <script>
+        let nutriscore = "A";
+
+        document.querySelectorAll(".ns_pill").forEach(pill => {
+            pill.addEventListener("click", () => {
+                document.querySelectorAll(".ns_pill").forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                nutriscore = pill.dataset.val;
+            });
+        });
+
+        async function generarReceta() {
+            const ingrediente = document.getElementById("ingrediente").value.trim();
+            if (!ingrediente) { document.getElementById("ingrediente").focus(); return; }
+
+            const btn    = document.getElementById("ia_btn");
+            const label  = document.getElementById("ia_btn_label");
+            const spin   = document.getElementById("ia_spinner");
+            const result = document.getElementById("ia_result");
+
+            btn.disabled = true;
+            spin.style.display = "inline-block";
+            label.textContent = "Generando…";
+            result.innerHTML = "";
+
+            const prompt = `Eres un dietista experto. El usuario tiene "${ingrediente}" con nutriscore ${nutriscore}.\nSugiere UNA receta saludable con nombre, ingredientes y preparación en 3 pasos. Responde en español.`;
+
+            try {
+                const r = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-20250514",
+                        max_tokens: 1000,
+                        messages: [{ role: "user", content: prompt }]
+                    })
+                });
+                const data = await r.json();
+                const texto = data.content?.map(b => b.text || "").join("") || "No se pudo generar la receta.";
+                result.innerHTML = `
+                    <div class="ia_result_head">
+                        <span class="ia_dot"></span>
+                        <span class="ia_tag">${ingrediente} · Nutriscore ${nutriscore}</span>
+                    </div>
+                    <div class="ia_result_body">${texto.replace(/</g, "&lt;")}</div>`;
+            } catch (e) {
+                result.innerHTML = `
+                    <div class="ia_result_head">
+                        <span class="ia_dot" style="background:#e24b4a"></span>
+                        <span class="ia_tag" style="color:#e24b4a">Error de conexión</span>
+                    </div>
+                    <div class="ia_result_body" style="color:var(--muted)">No se pudo conectar con la IA.</div>`;
+            }
+
+            btn.disabled = false;
+            spin.style.display = "none";
+            label.textContent = "Generar receta";
+        }
+    </script>
 </body>
 </html>
